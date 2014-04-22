@@ -19,9 +19,13 @@ package de.fhg.scai.bio.gui;
 import de.fhg.scai.bio.interfaces.PopupActionListener;
 import de.fhg.scai.bio.interfaces.Mapping;
 import de.fhg.scai.bio.interfaces.Prefix;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.WindowListener;
 import java.io.File;
 import java.util.List;
 import javax.swing.JCheckBoxMenuItem;
@@ -36,7 +40,7 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
  * @author Vishal Siramshetty <srmshtty[at]gmail.com>
  */
 public class VirtualSparqler extends javax.swing.JFrame {
-
+    
     public static String mappingFilePath = "/home/vishal/NetBeansProjects/VirtualSPARQLer/src/main/resources/mapping-iswc.ttl";
     public static List<String> connectionParameters;
     public static JPopupMenu prefixMenu;
@@ -83,6 +87,7 @@ public class VirtualSparqler extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VirtualSPARQLer");
+        setMinimumSize(new java.awt.Dimension(900, 625));
 
         outerPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -94,15 +99,17 @@ public class VirtualSparqler extends javax.swing.JFrame {
             }
         });
 
+        addressBar.setEditable(false);
+
         javax.swing.GroupLayout outerPanelLayout = new javax.swing.GroupLayout(outerPanel);
         outerPanel.setLayout(outerPanelLayout);
         outerPanelLayout.setHorizontalGroup(
             outerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(outerPanelLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(newConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(newConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addressBar)
+                .addComponent(addressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4))
         );
         outerPanelLayout.setVerticalGroup(
@@ -155,7 +162,7 @@ public class VirtualSparqler extends javax.swing.JFrame {
                 .addComponent(resCountLabel)
                 .addGap(3, 3, 3)
                 .addComponent(resultTripleCount, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addPrefixes, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(executeQuery, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,12 +198,14 @@ public class VirtualSparqler extends javax.swing.JFrame {
         queryScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         queryArea.setColumns(20);
+        queryArea.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
         queryArea.setRows(5);
         queryArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Query Editor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans Mono", 0, 12))); // NOI18N
         queryScrollPane.setViewportView(queryArea);
 
         resultArea.setEditable(false);
         resultArea.setColumns(20);
+        resultArea.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
         resultArea.setRows(5);
         resultArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Results", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans Mono", 0, 12))); // NOI18N
         jScrollPane1.setViewportView(resultArea);
@@ -221,11 +230,11 @@ public class VirtualSparqler extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(rpPanel)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(queryScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(queryScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(queryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, 0))
         );
 
@@ -250,6 +259,7 @@ public class VirtualSparqler extends javax.swing.JFrame {
 
     private void newConnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newConnectionActionPerformed
         ConnectionParameters params = new ConnectionParameters();
+        params.setTitle("Create New Mapping");
         params.setVisible(true);
         params.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_newConnectionActionPerformed
@@ -257,7 +267,7 @@ public class VirtualSparqler extends javax.swing.JFrame {
     private void addPrefixesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPrefixesActionPerformed
         prefixMenu.show(addPrefixes, 0, addPrefixes.getHeight());
     }//GEN-LAST:event_addPrefixesActionPerformed
-
+    
     private String getPrefix(String abbreviation) {
         for (Prefix pref : prefixes) {
             if (pref.getAbbreviation().equals(abbreviation)) {
@@ -266,16 +276,16 @@ public class VirtualSparqler extends javax.swing.JFrame {
         }
         return null;
     }
-
+    
     private void loadPrefixes() {
         File mapFile = new File(mappingFilePath);
         Mapping mapping = new Mapping(mapFile);
         prefixes = mapping.getPrefixes();
-
+        
         prefixMenu = new JPopupMenu();
-
+        
         ActionListener actionListener = new PopupActionListener() {
-
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedPrefix = e.getActionCommand();
@@ -284,21 +294,21 @@ public class VirtualSparqler extends javax.swing.JFrame {
                     queryArea.setText(getPrefix(selectedPrefix));
                 } else {
                     if (queryText.contains(getPrefix(selectedPrefix))) {
-
+                        
                     }
                     queryText = queryText + "\n" + getPrefix(selectedPrefix);
                     queryArea.setText(queryText);
                 }
             }
         };
-
+        
         for (Prefix pref : prefixes) {
             JCheckBoxMenuItem item = new JCheckBoxMenuItem(pref.getAbbreviation());
             item.addActionListener(actionListener);
             prefixMenu.add(item);
         }
     }
-
+    
     public static void testConnection(java.awt.event.ActionEvent evt) {
         System.out.println(connectionParameters.toString());
         if (!connectionParameters.isEmpty()) {
@@ -331,7 +341,31 @@ public class VirtualSparqler extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VirtualSparqler().setVisible(true);
+                VirtualSparqler sparqler = new VirtualSparqler();
+                sparqler.setVisible(true);
+//                sparqler.addComponentListener(new ComponentListener() {
+//
+//                    @Override
+//                    public void componentResized(ComponentEvent e) {
+//                        Component c = (Component)e.getSource();
+//                        System.out.println("New Dimension"+ c.getSize().toString());
+//                    }
+//
+//                    @Override
+//                    public void componentMoved(ComponentEvent e) {
+//                        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                    }
+//
+//                    @Override
+//                    public void componentShown(ComponentEvent e) {
+//                        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                    }
+//
+//                    @Override
+//                    public void componentHidden(ComponentEvent e) {
+//                        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                    }
+//                });
             }
         });
     }

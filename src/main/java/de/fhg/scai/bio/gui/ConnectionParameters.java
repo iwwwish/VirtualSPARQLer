@@ -79,18 +79,24 @@ public class ConnectionParameters extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        parameterPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Connection Parameters"));
+        parameterPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabel1.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
         jLabel1.setText("Database Name:");
 
+        jLabel2.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
         jLabel2.setText("Connection URL:");
 
+        jLabel3.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
         jLabel3.setText("Database Username:");
 
+        jLabel4.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
         jLabel4.setText("Database Password:");
 
+        jLabel5.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
         jLabel5.setText("Driver Class:");
 
+        testConnection.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
         testConnection.setText("Test");
         testConnection.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         testConnection.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +105,7 @@ public class ConnectionParameters extends javax.swing.JFrame {
             }
         });
 
+        createConnection.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
         createConnection.setText("Create");
         createConnection.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         createConnection.addActionListener(new java.awt.event.ActionListener() {
@@ -107,6 +114,7 @@ public class ConnectionParameters extends javax.swing.JFrame {
             }
         });
 
+        driverClass.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
         driverClass.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "select a JDBC Driver's class", "com.mysql.jdbc.Driver", "org.postgresql.Driver" }));
         driverClass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
