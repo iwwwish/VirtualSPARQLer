@@ -19,38 +19,46 @@ package de.fhg.scai.bio.gui;
 import de.fhg.scai.bio.interfaces.PopupActionListener;
 import de.fhg.scai.bio.interfaces.Mapping;
 import de.fhg.scai.bio.interfaces.Prefix;
-import java.awt.Component;
-import java.awt.Font;
+import de.fhg.scai.bio.interfaces.Property;
+import de.fhg.scai.bio.interfaces.Resource;
+import de.fhg.scai.bio.utils.Utility;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.WindowListener;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTree;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeSelectionModel;
 
 /**
  *
  * @author Vishal Siramshetty <srmshtty[at]gmail.com>
  */
 public class VirtualSparqler extends javax.swing.JFrame {
-    
-    public static String mappingFilePath = "/home/vishal/NetBeansProjects/VirtualSPARQLer/src/main/resources/mapping-iswc.ttl";
+
+    public static String mappingFilePath;
     public static List<String> connectionParameters;
     public static JPopupMenu prefixMenu;
     List<Prefix> prefixes;
+    List<Property> properties;
+    List<Resource> resources;
 
     /**
      * Creates new form VirtualSparqler
      */
     public VirtualSparqler() {
-        loadPrefixes();
         initComponents();
     }
 
@@ -66,6 +74,7 @@ public class VirtualSparqler extends javax.swing.JFrame {
         outerPanel = new javax.swing.JPanel();
         newConnection = new javax.swing.JButton();
         addressBar = new javax.swing.JTextField();
+        openConnection = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         queryPanel = new javax.swing.JPanel();
         execTimeLabel = new javax.swing.JLabel();
@@ -75,15 +84,11 @@ public class VirtualSparqler extends javax.swing.JFrame {
         executeQuery = new javax.swing.JButton();
         saveQuery = new javax.swing.JButton();
         addPrefixes = new javax.swing.JButton();
-        rpPanel = new javax.swing.JTabbedPane();
-        propertyScrollPane = new javax.swing.JScrollPane();
-        propertyEditorPanel = new javax.swing.JEditorPane();
-        resourceScrollPane = new javax.swing.JScrollPane();
-        resourceEditorPanel = new javax.swing.JEditorPane();
         queryScrollPane = new javax.swing.JScrollPane();
         queryArea = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         resultArea = new javax.swing.JTextArea();
+        rpPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VirtualSPARQLer");
@@ -92,7 +97,7 @@ public class VirtualSparqler extends javax.swing.JFrame {
         outerPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         newConnection.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
-        newConnection.setText("Create Mapping");
+        newConnection.setText("New Connection");
         newConnection.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newConnectionActionPerformed(evt);
@@ -101,25 +106,35 @@ public class VirtualSparqler extends javax.swing.JFrame {
 
         addressBar.setEditable(false);
 
+        openConnection.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
+        openConnection.setText("Open Mapping");
+        openConnection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openConnectionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout outerPanelLayout = new javax.swing.GroupLayout(outerPanel);
         outerPanel.setLayout(outerPanelLayout);
         outerPanelLayout.setHorizontalGroup(
             outerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(outerPanelLayout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addComponent(newConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(openConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4))
+                .addComponent(newConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addressBar)
+                .addContainerGap())
         );
         outerPanelLayout.setVerticalGroup(
             outerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(outerPanelLayout.createSequentialGroup()
-                .addGap(4, 4, 4)
+                .addGap(3, 3, 3)
                 .addGroup(outerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newConnection)
-                    .addComponent(addressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4))
+                    .addComponent(addressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(openConnection))
+                .addGap(3, 3, 3))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -132,7 +147,7 @@ public class VirtualSparqler extends javax.swing.JFrame {
         executionTime.setEditable(false);
 
         resCountLabel.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
-        resCountLabel.setText("No. of Triples retrieved:");
+        resCountLabel.setText("Number of Triples Retrieved:");
 
         resultTripleCount.setEditable(false);
 
@@ -162,7 +177,7 @@ public class VirtualSparqler extends javax.swing.JFrame {
                 .addComponent(resCountLabel)
                 .addGap(3, 3, 3)
                 .addComponent(resultTripleCount, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addComponent(addPrefixes, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(executeQuery, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,17 +199,6 @@ public class VirtualSparqler extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        rpPanel.setBorder(null);
-        rpPanel.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
-
-        propertyScrollPane.setViewportView(propertyEditorPanel);
-
-        rpPanel.addTab("Properties", propertyScrollPane);
-
-        resourceScrollPane.setViewportView(resourceEditorPanel);
-
-        rpPanel.addTab("Resources", resourceScrollPane);
-
         queryScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         queryArea.setColumns(20);
@@ -210,32 +214,41 @@ public class VirtualSparqler extends javax.swing.JFrame {
         resultArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Results", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans Mono", 0, 12))); // NOI18N
         jScrollPane1.setViewportView(resultArea);
 
+        rpPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout rpPanelLayout = new javax.swing.GroupLayout(rpPanel);
+        rpPanel.setLayout(rpPanelLayout);
+        rpPanelLayout.setHorizontalGroup(
+            rpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 245, Short.MAX_VALUE)
+        );
+        rpPanelLayout.setVerticalGroup(
+            rpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addComponent(rpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(queryPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(queryScrollPane)
+                    .addComponent(queryPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(queryScrollPane, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1))
-                .addGap(4, 4, 4))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(rpPanel)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(queryScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(queryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, 0))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(queryScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(queryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(rpPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -267,7 +280,24 @@ public class VirtualSparqler extends javax.swing.JFrame {
     private void addPrefixesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPrefixesActionPerformed
         prefixMenu.show(addPrefixes, 0, addPrefixes.getHeight());
     }//GEN-LAST:event_addPrefixesActionPerformed
-    
+
+    private void openConnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openConnectionActionPerformed
+        File mappingFile = Utility.UI.getFile(queryPanel, new FileNameExtensionFilter(" Mapping File (*.ttl) ", "ttl"));
+        if (mappingFile.exists()) {
+
+            rpPanel.revalidate();
+            rpPanel.repaint();
+
+            mappingFilePath = mappingFile.getAbsolutePath();
+
+            loadPrefixes();
+            loadPropertiesAndResources();
+        } else {
+            Utility.UI.showInfoMessage(getRootPane(), "Problem reading the mapping file. Please check.");
+        }
+
+    }//GEN-LAST:event_openConnectionActionPerformed
+
     private String getPrefix(String abbreviation) {
         for (Prefix pref : prefixes) {
             if (pref.getAbbreviation().equals(abbreviation)) {
@@ -276,39 +306,111 @@ public class VirtualSparqler extends javax.swing.JFrame {
         }
         return null;
     }
-    
+
     private void loadPrefixes() {
         File mapFile = new File(mappingFilePath);
         Mapping mapping = new Mapping(mapFile);
         prefixes = mapping.getPrefixes();
-        
+
         prefixMenu = new JPopupMenu();
-        
+
         ActionListener actionListener = new PopupActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedPrefix = e.getActionCommand();
                 String queryText = queryArea.getText();
+
                 if (queryText.isEmpty()) {
                     queryArea.setText(getPrefix(selectedPrefix));
                 } else {
                     if (queryText.contains(getPrefix(selectedPrefix))) {
-                        
+                        String lines[] = queryText.split(System.getProperty("line.separator"));
+                        StringBuilder queryBuilder = new StringBuilder();
+                        for (String line : Arrays.asList(lines)) {
+                            if (!line.contains(selectedPrefix)) {
+                                queryBuilder.append(line).append("\n");
+                            }
+                        }
+                        queryArea.setText(queryBuilder.toString().trim());
+
+                    } else {
+                        queryText = queryText + "\n" + getPrefix(selectedPrefix);
+                        queryArea.setText(queryText);
                     }
-                    queryText = queryText + "\n" + getPrefix(selectedPrefix);
-                    queryArea.setText(queryText);
+
                 }
             }
         };
-        
+
         for (Prefix pref : prefixes) {
             JCheckBoxMenuItem item = new JCheckBoxMenuItem(pref.getAbbreviation());
             item.addActionListener(actionListener);
             prefixMenu.add(item);
         }
     }
-    
+
+    private void loadPropertiesAndResources() {
+        File mapFile = new File(mappingFilePath);
+        Mapping mapping = new Mapping(mapFile);
+        properties = mapping.getProperties();
+        resources = mapping.getResources();
+
+//******************************* Creating Property Tree ****************************
+        DefaultMutableTreeNode prop_root = new DefaultMutableTreeNode("Properties");
+        for (Property p : properties) {
+            DefaultMutableTreeNode child = new DefaultMutableTreeNode(p.toString());
+            prop_root.add(child);
+        }
+        JTree prop_tree = new JTree(prop_root);
+        prop_tree.setShowsRootHandles(true);
+        prop_tree.putClientProperty("JTree.lineStyle", "Horizontal");
+        prop_tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        JScrollPane prop_sp = new JScrollPane(prop_tree);
+        prop_sp.setViewportView(prop_tree);
+
+//******************************* Creating Resource Tree ****************************
+        DefaultMutableTreeNode res_root = new DefaultMutableTreeNode("Resources");
+        DefaultMutableTreeNode parent_child = null;
+
+        for (Resource resource : resources) {
+            if (resource.getType().equals(Resource.TYPE_ClassMap)) {
+                parent_child = new DefaultMutableTreeNode(resource.toString());
+                parent_child.setAllowsChildren(true);
+                res_root.add(parent_child);
+            }
+
+            if (resource.getType().equals(Resource.TYPE_PropertyBridge) && parent_child != null) {
+                DefaultMutableTreeNode child = new DefaultMutableTreeNode(resource.toString());
+                parent_child.add(child);
+                parent_child.setAllowsChildren(true);
+            } else {
+                parent_child = res_root.getLastLeaf();
+                parent_child.setAllowsChildren(true);
+            }
+
+        }
+
+        JTree res_tree = new JTree(res_root);
+        res_tree.setShowsRootHandles(true);
+        res_tree.putClientProperty("JTree.lineStyle", "Horizontal");
+        for (int i = 0; i < res_tree.getRowCount(); i++) {
+            res_tree.expandRow(i);
+        }
+        res_tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        JScrollPane res_sp = new JScrollPane(res_tree);
+        res_sp.setViewportView(res_tree);
+
+//******************************* Creating SplitPane ****************************
+        JSplitPane rpSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+        rpSplitPane.setBottomComponent(prop_sp);
+        rpSplitPane.setTopComponent(res_sp);
+        rpSplitPane.setDividerLocation(320);
+        rpPanel.setLayout(new BorderLayout());
+        rpPanel.add(BorderLayout.CENTER, rpSplitPane);
+
+    }
+
     public static void testConnection(java.awt.event.ActionEvent evt) {
         System.out.println(connectionParameters.toString());
         if (!connectionParameters.isEmpty()) {
@@ -343,29 +445,6 @@ public class VirtualSparqler extends javax.swing.JFrame {
             public void run() {
                 VirtualSparqler sparqler = new VirtualSparqler();
                 sparqler.setVisible(true);
-//                sparqler.addComponentListener(new ComponentListener() {
-//
-//                    @Override
-//                    public void componentResized(ComponentEvent e) {
-//                        Component c = (Component)e.getSource();
-//                        System.out.println("New Dimension"+ c.getSize().toString());
-//                    }
-//
-//                    @Override
-//                    public void componentMoved(ComponentEvent e) {
-//                        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//                    }
-//
-//                    @Override
-//                    public void componentShown(ComponentEvent e) {
-//                        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//                    }
-//
-//                    @Override
-//                    public void componentHidden(ComponentEvent e) {
-//                        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//                    }
-//                });
             }
         });
     }
@@ -379,18 +458,15 @@ public class VirtualSparqler extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton newConnection;
+    private javax.swing.JButton openConnection;
     private javax.swing.JPanel outerPanel;
-    private javax.swing.JEditorPane propertyEditorPanel;
-    private javax.swing.JScrollPane propertyScrollPane;
     private javax.swing.JTextArea queryArea;
     private javax.swing.JPanel queryPanel;
     private javax.swing.JScrollPane queryScrollPane;
     private javax.swing.JLabel resCountLabel;
-    private javax.swing.JEditorPane resourceEditorPanel;
-    private javax.swing.JScrollPane resourceScrollPane;
     private javax.swing.JTextArea resultArea;
     private javax.swing.JTextField resultTripleCount;
-    private javax.swing.JTabbedPane rpPanel;
+    private javax.swing.JPanel rpPanel;
     private javax.swing.JButton saveQuery;
     // End of variables declaration//GEN-END:variables
 }

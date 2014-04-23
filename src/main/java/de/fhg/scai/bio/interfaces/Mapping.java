@@ -16,13 +16,13 @@
  */
 package de.fhg.scai.bio.interfaces;
 
-import de.fhg.scai.bio.interfaces.Prefix;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,6 +35,8 @@ public class Mapping {
 
     private static final Logger logger = Logger.getLogger("com.lia.core");
     private List<Prefix> prefixes;
+    private List<Property> properties;
+    private List<Resource> resources;
     private File mappingFile;
 
     public Mapping(File mappingFile) {
@@ -42,7 +44,7 @@ public class Mapping {
     }
 
     public List<Prefix> getPrefixes() {
-        List<Prefix> prefixes = new ArrayList<>();
+        List<Prefix> prefs = new ArrayList<>();
         String prefix = "@prefix";
         BufferedReader reader;
         try {
@@ -53,14 +55,114 @@ public class Mapping {
                 String abb = line.substring(prefix.length(), index);
                 String url = line.substring(index + 1, line.length() - 2);
                 Prefix pref = new Prefix(abb, url);
-                prefixes.add(pref);
+                prefs.add(pref);
             }
             reader.close();
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Mapping file not found.");
             return null;
         }
-        return prefixes;
+        return prefs;
     }
 
+    public List<Property> getProperties() {
+        properties = new ArrayList<>();
+        try {
+
+            BufferedReader reader;
+
+            reader = new BufferedReader(new FileReader(this.mappingFile));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.contains("d2rq:property ")) {
+                    String prop = line.trim();
+                    int index = prop.indexOf(" ");
+                    prop = prop.substring(index, prop.length() - 1);
+                    Property p = new Property(prop, false);
+                    if (!duplicateProperty(p)) {
+                        properties.add(p);
+                    }
+
+                }
+            }
+            reader.close();
+
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Mapping file not found.");
+            return null;
+        }
+
+        sortProperties();
+        return properties;
+    }
+
+    public List<Resource> getResources() {
+        resources = new ArrayList<>();
+        try {
+            BufferedReader reader;
+
+            reader = new BufferedReader(new FileReader(this.mappingFile));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("map:")) {
+                    int index = line.indexOf(" ");
+                    String name = line.substring(4, index);
+
+                    int type = line.lastIndexOf(" ");
+                    String res_type = line.substring(type + 1, line.length() - 1);
+
+                    if (res_type.equals(Resource.TYPE_ClassMap) || res_type.equals(Resource.TYPE_PropertyBridge)) {
+                        Resource res = new Resource(name, res_type);
+                        if (!duplicateResource(res)) {
+                            resources.add(res);
+                        }
+                    }
+
+                }
+            }
+            reader.close();
+
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Mapping file not found.");
+            return null;
+        }
+        return resources;
+    }
+
+    private void sortProperties() {
+        List<String> props = new ArrayList();
+
+        for (Property pr : properties) {
+            props.add(pr.toString());
+        }
+
+        Collections.sort(props);
+        properties.clear();
+
+        for (String p : props) {
+            properties.add(new Property(p, false));
+        }
+    }
+
+    private boolean duplicateProperty(Property prop) {
+
+        String p = prop.toString();
+        for (Property pr : properties) {
+            if (pr.toString().equals(p)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean duplicateResource(Resource res) {
+
+        String rs = res.toString();
+        for (Resource r : resources) {
+            if (r.toString().equals(rs)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

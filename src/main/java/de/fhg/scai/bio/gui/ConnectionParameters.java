@@ -97,6 +97,7 @@ public class ConnectionParameters extends javax.swing.JFrame {
         jLabel5.setText("Driver Class:");
 
         testConnection.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
+        testConnection.setIcon(new javax.swing.ImageIcon("/home/vsiramshetty/NetBeansProjects/VirtualSPARQLer/images/gears.png")); // NOI18N
         testConnection.setText("Test");
         testConnection.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         testConnection.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +107,7 @@ public class ConnectionParameters extends javax.swing.JFrame {
         });
 
         createConnection.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
+        createConnection.setIcon(new javax.swing.ImageIcon("/home/vsiramshetty/NetBeansProjects/VirtualSPARQLer/images/plus_plus.png")); // NOI18N
         createConnection.setText("Create");
         createConnection.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         createConnection.addActionListener(new java.awt.event.ActionListener() {
@@ -169,7 +171,7 @@ public class ConnectionParameters extends javax.swing.JFrame {
                 .addGroup(parameterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(driverClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,7 +182,9 @@ public class ConnectionParameters extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(parameterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(parameterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
