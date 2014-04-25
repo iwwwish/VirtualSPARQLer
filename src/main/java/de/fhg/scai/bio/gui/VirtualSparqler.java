@@ -16,21 +16,31 @@
  */
 package de.fhg.scai.bio.gui;
 
-import de.fhg.scai.bio.interfaces.PopupActionListener;
+import de.fhg.scai.bio.utils.PopupActionListener;
 import de.fhg.scai.bio.interfaces.Mapping;
 import de.fhg.scai.bio.interfaces.Prefix;
 import de.fhg.scai.bio.interfaces.Property;
 import de.fhg.scai.bio.interfaces.Resource;
+import de.fhg.scai.bio.utils.D2RCommands;
+import de.fhg.scai.bio.utils.PopupMouseListener;
 import de.fhg.scai.bio.utils.Utility;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -40,6 +50,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeSelectionModel;
 
 /**
@@ -79,11 +90,10 @@ public class VirtualSparqler extends javax.swing.JFrame {
         queryPanel = new javax.swing.JPanel();
         execTimeLabel = new javax.swing.JLabel();
         executionTime = new javax.swing.JTextField();
-        resCountLabel = new javax.swing.JLabel();
-        resultTripleCount = new javax.swing.JTextField();
         executeQuery = new javax.swing.JButton();
         saveQuery = new javax.swing.JButton();
         addPrefixes = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         queryScrollPane = new javax.swing.JScrollPane();
         queryArea = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -145,17 +155,23 @@ public class VirtualSparqler extends javax.swing.JFrame {
         execTimeLabel.setText("Execution Time:");
 
         executionTime.setEditable(false);
-
-        resCountLabel.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
-        resCountLabel.setText("Number of Triples Retrieved:");
-
-        resultTripleCount.setEditable(false);
+        executionTime.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
 
         executeQuery.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
         executeQuery.setText("Run");
+        executeQuery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                executeQueryActionPerformed(evt);
+            }
+        });
 
         saveQuery.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
         saveQuery.setText("Save");
+        saveQuery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveQueryActionPerformed(evt);
+            }
+        });
 
         addPrefixes.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
         addPrefixes.setText("Add Prefix");
@@ -165,24 +181,26 @@ public class VirtualSparqler extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("(sec)");
+
         javax.swing.GroupLayout queryPanelLayout = new javax.swing.GroupLayout(queryPanel);
         queryPanel.setLayout(queryPanelLayout);
         queryPanelLayout.setHorizontalGroup(
             queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(queryPanelLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(execTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(executionTime, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(resCountLabel)
-                .addGap(3, 3, 3)
-                .addComponent(resultTripleCount, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(executionTime, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 286, Short.MAX_VALUE)
                 .addComponent(addPrefixes, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(executeQuery, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(saveQuery, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(saveQuery, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
         );
         queryPanelLayout.setVerticalGroup(
             queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,11 +209,10 @@ public class VirtualSparqler extends javax.swing.JFrame {
                 .addGroup(queryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(execTimeLabel)
                     .addComponent(executionTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resCountLabel)
-                    .addComponent(resultTripleCount, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addPrefixes)
                     .addComponent(executeQuery)
-                    .addComponent(saveQuery))
+                    .addComponent(saveQuery)
+                    .addComponent(jLabel1))
                 .addContainerGap())
         );
 
@@ -243,11 +260,11 @@ public class VirtualSparqler extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(queryScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addComponent(queryScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(queryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
             .addComponent(rpPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -297,6 +314,30 @@ public class VirtualSparqler extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_openConnectionActionPerformed
+
+    private void executeQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executeQueryActionPerformed
+
+        if (queryArea.getText().isEmpty()) {
+            resultArea.setText("No query provided.");
+        } else {
+            setCursor(Cursor.WAIT_CURSOR);
+
+            D2RCommands.executeQuery(mappingFilePath, queryArea.getText());
+            resultArea.setText(D2RCommands.getQueryResult());
+            String execTime = String.valueOf(D2RCommands.getExecutionTime());
+            executionTime.setText(execTime);
+            setCursor(Cursor.DEFAULT_CURSOR);
+        }
+
+    }//GEN-LAST:event_executeQueryActionPerformed
+
+    private void saveQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveQueryActionPerformed
+        if (!queryArea.getText().trim().isEmpty()) {
+            D2RCommands.saveQueryResult(resultArea);
+        } else {
+            Utility.UI.showInfoMessage(getRootPane(), "No results to save!");
+        }
+    }//GEN-LAST:event_saveQueryActionPerformed
 
     private String getPrefix(String abbreviation) {
         for (Prefix pref : prefixes) {
@@ -362,7 +403,7 @@ public class VirtualSparqler extends javax.swing.JFrame {
             DefaultMutableTreeNode child = new DefaultMutableTreeNode(p.toString());
             prop_root.add(child);
         }
-        JTree prop_tree = new JTree(prop_root);
+        final JTree prop_tree = new JTree(prop_root);
         prop_tree.setShowsRootHandles(true);
         prop_tree.putClientProperty("JTree.lineStyle", "Horizontal");
         prop_tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
@@ -391,7 +432,7 @@ public class VirtualSparqler extends javax.swing.JFrame {
 
         }
 
-        JTree res_tree = new JTree(res_root);
+        final JTree res_tree = new JTree(res_root);
         res_tree.setShowsRootHandles(true);
         res_tree.putClientProperty("JTree.lineStyle", "Horizontal");
         for (int i = 0; i < res_tree.getRowCount(); i++) {
@@ -401,7 +442,127 @@ public class VirtualSparqler extends javax.swing.JFrame {
         JScrollPane res_sp = new JScrollPane(res_tree);
         res_sp.setViewportView(res_tree);
 
-//******************************* Creating SplitPane ****************************
+        ImageIcon leafIcon = new ImageIcon("images/blue.png");
+        if (leafIcon != null) {
+            DefaultTreeCellRenderer dtcr
+                    = new DefaultTreeCellRenderer();
+            dtcr.setLeafIcon(leafIcon);
+            dtcr.setBackgroundNonSelectionColor(Color.WHITE);
+            //dtcr.setBackgroundSelectionColor(Color.LIGHT_GRAY);
+            dtcr.setTextSelectionColor(Color.BLACK);
+            dtcr.setTextNonSelectionColor(Color.BLACK);
+
+            res_tree.setCellRenderer(dtcr);
+        } else {
+            System.err.println("Leaf icon missing; using default.");
+        }
+//********************** Adding PopupListener to JTrees ************************        
+
+        PopupActionListener res_actionListener = new PopupActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getActionCommand().equals("Copy")) {
+                    DefaultMutableTreeNode selectedElement
+                            = (DefaultMutableTreeNode) res_tree.getSelectionPath().getLastPathComponent();
+
+                    StringSelection stringSelection = new StringSelection((String) selectedElement.getUserObject());
+                    Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+                    clpbrd.setContents(stringSelection, null);
+                }
+            }
+        };
+
+        final JPopupMenu res_menu = new JPopupMenu();
+        JMenuItem copyItem = new JMenuItem("Copy");
+        res_menu.add(copyItem);
+        copyItem.setActionCommand("Copy");
+        copyItem.addActionListener(res_actionListener);
+
+        PopupMouseListener res_menuListener = new PopupMouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    res_menu.show((Component) e.getSource(), e.getX(), e.getY());
+                }
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    res_menu.show((Component) e.getSource(), e.getX(), e.getY());
+                }
+            }
+        };
+
+        res_tree.addMouseListener(res_menuListener);
+
+        PopupActionListener prop_actionListener = new PopupActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getActionCommand().equals("Copy")) {
+                    DefaultMutableTreeNode selectedElement
+                            = (DefaultMutableTreeNode) prop_tree.getSelectionPath().getLastPathComponent();
+
+                    StringSelection stringSelection = new StringSelection((String) selectedElement.getUserObject());
+                    Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+                    clpbrd.setContents(stringSelection, null);
+                }
+            }
+        };
+
+        final JPopupMenu prop_menu = new JPopupMenu();
+        JMenuItem copyItem1 = new JMenuItem("Copy");
+        prop_menu.add(copyItem1);
+        copyItem1.setActionCommand("Copy");
+        copyItem1.addActionListener(prop_actionListener);
+
+        PopupMouseListener prop_menuListener = new PopupMouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    prop_menu.show((Component) e.getSource(), e.getX(), e.getY());
+                }
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    prop_menu.show((Component) e.getSource(), e.getX(), e.getY());
+                }
+            }
+        };
+
+        prop_tree.addMouseListener(prop_menuListener);
+
+//******************************* Creating SplitPane ***************************
         JSplitPane rpSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
         rpSplitPane.setBottomComponent(prop_sp);
         rpSplitPane.setTopComponent(res_sp);
@@ -455,6 +616,7 @@ public class VirtualSparqler extends javax.swing.JFrame {
     private javax.swing.JLabel execTimeLabel;
     private javax.swing.JButton executeQuery;
     private javax.swing.JTextField executionTime;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton newConnection;
@@ -463,9 +625,7 @@ public class VirtualSparqler extends javax.swing.JFrame {
     private javax.swing.JTextArea queryArea;
     private javax.swing.JPanel queryPanel;
     private javax.swing.JScrollPane queryScrollPane;
-    private javax.swing.JLabel resCountLabel;
     private javax.swing.JTextArea resultArea;
-    private javax.swing.JTextField resultTripleCount;
     private javax.swing.JPanel rpPanel;
     private javax.swing.JButton saveQuery;
     // End of variables declaration//GEN-END:variables

@@ -14,19 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package de.fhg.scai.bio.interfaces;
+package de.fhg.scai.bio.utils;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 
 /**
  *
  * @author Vishal Siramshetty <srmshtty[at]gmail.com>
  */
-public abstract class PopupActionListener implements ActionListener {
-
-    public void actionPerformed(ActionEvent e) {
-
-    }
+public abstract class PopupMouseListener implements MouseListener{
 
 }

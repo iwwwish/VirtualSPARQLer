@@ -16,10 +16,12 @@
  */
 package de.fhg.scai.bio.utils;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Vishal Siramshetty <srmshtty[at]gmail.com>
  */
-public class Commands {
+public abstract class PopupActionListener implements ActionListener {
 
 }

@@ -136,11 +136,11 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Component id="queryScrollPane" pref="218" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="queryScrollPane" min="-2" pref="290" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="queryPanel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="360" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" pref="288" max="32767" attributes="0"/>
               </Group>
               <Component id="rpPanel" max="32767" attributes="0"/>
           </Group>
@@ -158,19 +158,19 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Component id="execTimeLabel" min="-2" pref="107" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                      <Component id="executionTime" min="-2" pref="44" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="resCountLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                      <Component id="resultTripleCount" min="-2" pref="39" max="-2" attributes="0"/>
-                      <EmptySpace pref="74" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="executionTime" min="-2" pref="63" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="286" max="32767" attributes="0"/>
                       <Component id="addPrefixes" min="-2" pref="99" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="executeQuery" min="-2" pref="54" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="saveQuery" min="-2" pref="60" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -181,11 +181,10 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="execTimeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="executionTime" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="resCountLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="resultTripleCount" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="addPrefixes" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="executeQuery" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="saveQuery" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -204,19 +203,9 @@
             <Component class="javax.swing.JTextField" name="executionTime">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="resCountLabel">
-              <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="DejaVu Sans Mono" size="12" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Number of Triples Retrieved:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="resultTripleCount">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="executeQuery">
@@ -226,6 +215,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Run"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="executeQueryActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="saveQuery">
               <Properties>
@@ -234,6 +226,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Save"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveQueryActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="addPrefixes">
               <Properties>
@@ -245,6 +240,11 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addPrefixesActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="(sec)"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
