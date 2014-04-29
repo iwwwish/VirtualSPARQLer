@@ -58,7 +58,7 @@ import javax.swing.tree.TreeSelectionModel;
  * @author Vishal Siramshetty <srmshtty[at]gmail.com>
  */
 public class VirtualSparqler extends javax.swing.JFrame {
-
+    
     public static String mappingFilePath;
     public static List<String> connectionParameters;
     public static JPopupMenu prefixMenu;
@@ -301,14 +301,15 @@ public class VirtualSparqler extends javax.swing.JFrame {
     private void openConnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openConnectionActionPerformed
         File mappingFile = Utility.UI.getFile(queryPanel, new FileNameExtensionFilter(" Mapping File (*.ttl) ", "ttl"));
         if (mappingFile.exists()) {
-
+            
             rpPanel.revalidate();
             rpPanel.repaint();
-
+            
             mappingFilePath = mappingFile.getAbsolutePath();
-
+            
             loadPrefixes();
             loadPropertiesAndResources();
+            addressBar.setText(mappingFile.getName());
         } else {
             Utility.UI.showInfoMessage(getRootPane(), "Problem reading the mapping file. Please check.");
         }
@@ -316,12 +317,12 @@ public class VirtualSparqler extends javax.swing.JFrame {
     }//GEN-LAST:event_openConnectionActionPerformed
 
     private void executeQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executeQueryActionPerformed
-
+        
         if (queryArea.getText().isEmpty()) {
             resultArea.setText("No query provided.");
         } else {
             setCursor(Cursor.WAIT_CURSOR);
-
+            
             D2RCommands.executeQuery(mappingFilePath, queryArea.getText());
             resultArea.setText(D2RCommands.getQueryResult());
             String execTime = String.valueOf(D2RCommands.getExecutionTime());
@@ -338,7 +339,7 @@ public class VirtualSparqler extends javax.swing.JFrame {
             Utility.UI.showInfoMessage(getRootPane(), "No results to save!");
         }
     }//GEN-LAST:event_saveQueryActionPerformed
-
+    
     private String getPrefix(String abbreviation) {
         for (Prefix pref : prefixes) {
             if (pref.getAbbreviation().equals(abbreviation)) {
@@ -347,21 +348,21 @@ public class VirtualSparqler extends javax.swing.JFrame {
         }
         return null;
     }
-
+    
     private void loadPrefixes() {
         File mapFile = new File(mappingFilePath);
         Mapping mapping = new Mapping(mapFile);
         prefixes = mapping.getPrefixes();
-
+        
         prefixMenu = new JPopupMenu();
-
+        
         ActionListener actionListener = new PopupActionListener() {
-
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedPrefix = e.getActionCommand();
                 String queryText = queryArea.getText();
-
+                
                 if (queryText.isEmpty()) {
                     queryArea.setText(getPrefix(selectedPrefix));
                 } else {
@@ -374,23 +375,23 @@ public class VirtualSparqler extends javax.swing.JFrame {
                             }
                         }
                         queryArea.setText(queryBuilder.toString().trim());
-
+                        
                     } else {
                         queryText = queryText + "\n" + getPrefix(selectedPrefix);
                         queryArea.setText(queryText);
                     }
-
+                    
                 }
             }
         };
-
+        
         for (Prefix pref : prefixes) {
             JCheckBoxMenuItem item = new JCheckBoxMenuItem(pref.getAbbreviation());
             item.addActionListener(actionListener);
             prefixMenu.add(item);
         }
     }
-
+    
     private void loadPropertiesAndResources() {
         File mapFile = new File(mappingFilePath);
         Mapping mapping = new Mapping(mapFile);
@@ -413,14 +414,14 @@ public class VirtualSparqler extends javax.swing.JFrame {
 //******************************* Creating Resource Tree ****************************
         DefaultMutableTreeNode res_root = new DefaultMutableTreeNode("Resources");
         DefaultMutableTreeNode parent_child = null;
-
+        
         for (Resource resource : resources) {
             if (resource.getType().equals(Resource.TYPE_ClassMap)) {
                 parent_child = new DefaultMutableTreeNode(resource.toString());
                 parent_child.setAllowsChildren(true);
                 res_root.add(parent_child);
             }
-
+            
             if (resource.getType().equals(Resource.TYPE_PropertyBridge) && parent_child != null) {
                 DefaultMutableTreeNode child = new DefaultMutableTreeNode(resource.toString());
                 parent_child.add(child);
@@ -429,9 +430,9 @@ public class VirtualSparqler extends javax.swing.JFrame {
                 parent_child = res_root.getLastLeaf();
                 parent_child.setAllowsChildren(true);
             }
-
+            
         }
-
+        
         final JTree res_tree = new JTree(res_root);
         res_tree.setShowsRootHandles(true);
         res_tree.putClientProperty("JTree.lineStyle", "Horizontal");
@@ -441,7 +442,7 @@ public class VirtualSparqler extends javax.swing.JFrame {
         res_tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         JScrollPane res_sp = new JScrollPane(res_tree);
         res_sp.setViewportView(res_tree);
-
+        
         ImageIcon leafIcon = new ImageIcon("images/blue.png");
         if (leafIcon != null) {
             DefaultTreeCellRenderer dtcr
@@ -451,7 +452,7 @@ public class VirtualSparqler extends javax.swing.JFrame {
             //dtcr.setBackgroundSelectionColor(Color.LIGHT_GRAY);
             dtcr.setTextSelectionColor(Color.BLACK);
             dtcr.setTextNonSelectionColor(Color.BLACK);
-
+            
             res_tree.setCellRenderer(dtcr);
         } else {
             System.err.println("Leaf icon missing; using default.");
@@ -459,47 +460,47 @@ public class VirtualSparqler extends javax.swing.JFrame {
 //********************** Adding PopupListener to JTrees ************************        
 
         PopupActionListener res_actionListener = new PopupActionListener() {
-
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getActionCommand().equals("Copy")) {
                     DefaultMutableTreeNode selectedElement
                             = (DefaultMutableTreeNode) res_tree.getSelectionPath().getLastPathComponent();
-
+                    
                     StringSelection stringSelection = new StringSelection((String) selectedElement.getUserObject());
                     Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
                     clpbrd.setContents(stringSelection, null);
                 }
             }
         };
-
+        
         final JPopupMenu res_menu = new JPopupMenu();
         JMenuItem copyItem = new JMenuItem("Copy");
         res_menu.add(copyItem);
         copyItem.setActionCommand("Copy");
         copyItem.addActionListener(res_actionListener);
-
+        
         PopupMouseListener res_menuListener = new PopupMouseListener() {
-
+            
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
                 if (e.isPopupTrigger()) {
                     res_menu.show((Component) e.getSource(), e.getX(), e.getY());
                 }
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 if (e.isPopupTrigger()) {
@@ -507,51 +508,51 @@ public class VirtualSparqler extends javax.swing.JFrame {
                 }
             }
         };
-
+        
         res_tree.addMouseListener(res_menuListener);
-
+        
         PopupActionListener prop_actionListener = new PopupActionListener() {
-
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getActionCommand().equals("Copy")) {
                     DefaultMutableTreeNode selectedElement
                             = (DefaultMutableTreeNode) prop_tree.getSelectionPath().getLastPathComponent();
-
+                    
                     StringSelection stringSelection = new StringSelection((String) selectedElement.getUserObject());
                     Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
                     clpbrd.setContents(stringSelection, null);
                 }
             }
         };
-
+        
         final JPopupMenu prop_menu = new JPopupMenu();
         JMenuItem copyItem1 = new JMenuItem("Copy");
         prop_menu.add(copyItem1);
         copyItem1.setActionCommand("Copy");
         copyItem1.addActionListener(prop_actionListener);
-
+        
         PopupMouseListener prop_menuListener = new PopupMouseListener() {
-
+            
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
                 if (e.isPopupTrigger()) {
                     prop_menu.show((Component) e.getSource(), e.getX(), e.getY());
                 }
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 if (e.isPopupTrigger()) {
@@ -559,7 +560,7 @@ public class VirtualSparqler extends javax.swing.JFrame {
                 }
             }
         };
-
+        
         prop_tree.addMouseListener(prop_menuListener);
 
 //******************************* Creating SplitPane ***************************
@@ -569,9 +570,9 @@ public class VirtualSparqler extends javax.swing.JFrame {
         rpSplitPane.setDividerLocation(320);
         rpPanel.setLayout(new BorderLayout());
         rpPanel.add(BorderLayout.CENTER, rpSplitPane);
-
+        
     }
-
+    
     public static void testConnection(java.awt.event.ActionEvent evt) {
         System.out.println(connectionParameters.toString());
         if (!connectionParameters.isEmpty()) {

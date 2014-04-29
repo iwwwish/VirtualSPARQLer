@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComponent;
 import javax.swing.JTextArea;
 
 /**
@@ -32,8 +31,8 @@ import javax.swing.JTextArea;
  */
 public class D2RCommands {
 
-    public static String D2RQ_Query = "/home/vishal/d2rq-0.8.1/d2r-query";
-    public static String D2RQ_Server = "/home/vishal/d2rq-0.8.1/d2r-server";
+    public static String D2RQ_Query = "/home/vsiramshetty/Master Thesis/d2rq-0.8.1/d2r-query";
+    public static String D2RQ_Server = "/home/vsiramshetty/Master Thesis/d2rq-0.8.1/d2r-server";
     private static String queryResult;
     private static double startTime;
     private static double executionTime;
@@ -101,10 +100,6 @@ public class D2RCommands {
 
     private static BufferedReader getError(Process p) {
         return new BufferedReader(new InputStreamReader(p.getErrorStream()));
-    }
-
-    public static void main(String[] args) {
-        executeQuery("/home/vishal/d2rq-0.8.1/mapping-iswc.ttl", "SELECT * { ?s ?p ?o } LIMIT 10");
     }
 
 }
