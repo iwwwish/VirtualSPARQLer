@@ -16,6 +16,7 @@
  */
 package de.fhg.scai.bio.utils;
 
+import de.fhg.scai.bio.interfaces.QueryResult;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
@@ -23,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JRootPane;
 import javax.swing.JTextArea;
 
 /**
@@ -31,8 +33,8 @@ import javax.swing.JTextArea;
  */
 public class D2RCommands {
 
-    public static String D2RQ_Query = "/home/vsiramshetty/Master Thesis/d2rq-0.8.1/d2r-query";
-    public static String D2RQ_Server = "/home/vsiramshetty/Master Thesis/d2rq-0.8.1/d2r-server";
+    public static String D2RQ_Query = "/home/vishal/d2rq-0.8.1/d2r-query";
+    public static String D2RQ_Server = "/home/vishal/d2rq-0.8.1/d2r-server";
     private static String queryResult;
     private static double startTime;
     private static double executionTime;
@@ -63,12 +65,12 @@ public class D2RCommands {
 
                 while ((line = output.readLine()) != null) {
                     builder.append(line).append("\n");
-                    System.out.println(line);
+                    //System.out.println(line);
                 }
 
                 while ((line = error.readLine()) != null) {
                     builder.append(line).append("\n");
-                    System.out.println(line);
+                    //System.out.println(line);
                 }
 
                 queryResult = builder.toString();
@@ -81,12 +83,27 @@ public class D2RCommands {
         }
     }
 
-    public static void saveQueryResult(JTextArea parent) {
-        File fileToSave = Utility.UI.saveFile(parent);
+    public static void saveQueryResult(JTextArea parent, JRootPane rootpane) {
+        File fileToSave = Utility.UI.saveFileAs(rootpane);
+        String ext = Utility.getExtension(fileToSave);
+
         FileWriter fw;
         try {
             fw = new FileWriter(fileToSave);
-            fw.write(parent.getText());
+            if (ext.equals(QueryResult.FORMAT_TXT)) {
+                fw.write(parent.getText());
+            }
+            if (ext.equals(QueryResult.FORMAT_JSON)) {
+                String res = parent.getText();
+                JSONWriter writer = new JSONWriter(QueryResult.getHeads(res), QueryResult.getObjects(res));
+                fw.write(writer.getJSONString());
+            }
+            if (ext.equals(QueryResult.FORMAT_XML)) {
+                String res = parent.getText();
+                XMLWriter writer = new XMLWriter(QueryResult.getHeads(res), QueryResult.getObjects(res));
+                fw.write(writer.getXMLString());
+            }
+
             fw.close();
         } catch (IOException ex) {
             Logger.getLogger(D2RCommands.class.getName()).log(Level.SEVERE, null, ex);

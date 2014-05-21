@@ -667,6 +667,35 @@ public class Utility {
             }
         }
 
+        public static File saveFileAs(JComponent parent) {
+            File f = null;
+            try {
+                JFileChooser jfc = new JFileChooser();
+                
+                    FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter("XML", "xml");
+                    jfc.addChoosableFileFilter(xmlfilter);
+                
+                
+                    FileNameExtensionFilter txtfilter = new FileNameExtensionFilter("Text", "txt");
+                    jfc.addChoosableFileFilter(txtfilter);
+                
+                
+                    FileNameExtensionFilter jsonfilter = new FileNameExtensionFilter("JSON", "json");
+                    jfc.addChoosableFileFilter(jsonfilter);
+                
+
+                jfc.setDialogTitle("VirtualSPARQLer: FileSaver");
+                jfc.showSaveDialog(parent);
+                f = jfc.getSelectedFile();
+                f.createNewFile();
+            } catch (IOException ex) {
+                mylogger.log(Level.SEVERE, "Error: Can not save file: {0}", ex.getMessage());
+            } finally {
+                return f;
+
+            }
+        }
+
         public static File getFile(JComponent parent, FileNameExtensionFilter filter) {
             JFileChooser jfc = new JFileChooser();
             jfc.addChoosableFileFilter(filter);
