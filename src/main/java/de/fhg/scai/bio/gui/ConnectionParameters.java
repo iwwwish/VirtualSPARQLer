@@ -5,22 +5,27 @@
  */
 package de.fhg.scai.bio.gui;
 
+import de.fhg.scai.bio.core.D2RCommands;
+import de.fhg.scai.bio.core.DBConnection;
+import de.fhg.scai.bio.utils.Utility;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * This is an additional class that is used for creating a mapping file via a
+ * small graphical user interface.
  *
  * @author vishal
  */
 public class ConnectionParameters extends javax.swing.JFrame {
-    
+
     private String DatabaseName;
     private String ConnectionURL;
     private String Username;
     private String Password;
     private String DriverClass;
     public List<String> PARAMETERS;
-    
+
     public List<String> getParameters() {
         return getConnectionParameters();
     }
@@ -35,14 +40,14 @@ public class ConnectionParameters extends javax.swing.JFrame {
         this.Username = username.getText().trim();
         this.Password = String.valueOf(password.getPassword());
         this.DriverClass = driverClass.getSelectedItem().toString();
-        
+
         List<String> params = new ArrayList<>();
         params.add(0, DatabaseName);
         params.add(1, ConnectionURL);
         params.add(2, Username);
         params.add(3, Password);
         params.add(4, DriverClass);
-        
+
         return params;
     }
 
@@ -97,7 +102,6 @@ public class ConnectionParameters extends javax.swing.JFrame {
         jLabel5.setText("Driver Class:");
 
         testConnection.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
-        testConnection.setIcon(new javax.swing.ImageIcon("/home/vsiramshetty/NetBeansProjects/VirtualSPARQLer/images/gears.png")); // NOI18N
         testConnection.setText("Test");
         testConnection.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         testConnection.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +111,6 @@ public class ConnectionParameters extends javax.swing.JFrame {
         });
 
         createConnection.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
-        createConnection.setIcon(new javax.swing.ImageIcon("/home/vsiramshetty/NetBeansProjects/VirtualSPARQLer/images/plus_plus.png")); // NOI18N
         createConnection.setText("Create");
         createConnection.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         createConnection.addActionListener(new java.awt.event.ActionListener() {
@@ -117,8 +120,9 @@ public class ConnectionParameters extends javax.swing.JFrame {
         });
 
         driverClass.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 12)); // NOI18N
-        driverClass.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "select a JDBC Driver's class", "com.mysql.jdbc.Driver", "org.postgresql.Driver" }));
+        driverClass.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "com.mysql.jdbc.Driver" }));
         driverClass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        driverClass.setFocusable(false);
 
         javax.swing.GroupLayout parameterPanelLayout = new javax.swing.GroupLayout(parameterPanel);
         parameterPanel.setLayout(parameterPanelLayout);
@@ -154,7 +158,7 @@ public class ConnectionParameters extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(databaseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(testConnection)
-                    .addComponent(createConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(createConnection))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(parameterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -192,14 +196,42 @@ public class ConnectionParameters extends javax.swing.JFrame {
 
     private void createConnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createConnectionActionPerformed
         this.PARAMETERS = getConnectionParameters();
-        VirtualSparqler.connectionParameters = getConnectionParameters();
-        dispose();
+        if (this.PARAMETERS.get(0).isEmpty()
+                || this.PARAMETERS.get(1).isEmpty()
+                || this.PARAMETERS.get(2).isEmpty()
+                || this.PARAMETERS.get(3).isEmpty()) {
+            Utility.UI.showInfoMessage(getRootPane(), "Error! Please check if the connection parameters are valid.");
+        } else {
+            if (testDBConnection(PARAMETERS)) {
+                System.out.println("Connection established...");
+                // create a mapping file using D2RCommands
+                D2RCommands.generateMappingFile(PARAMETERS);
+                Utility.UI.showInfoMessage(getRootPane(), "New mapping file generated at " + System.getProperty("user.home") + ". To query the database, open the mapping file.");
+            } else {
+                System.err.println("Failed to create connection with database. Try again with valid connection parameters.");
+            }
+        }
     }//GEN-LAST:event_createConnectionActionPerformed
 
     private void testConnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testConnectionActionPerformed
-        VirtualSparqler.connectionParameters = getConnectionParameters();
-        VirtualSparqler.testConnection(evt);
+        this.PARAMETERS = getConnectionParameters();
+        if (this.PARAMETERS.get(0).isEmpty()
+                || this.PARAMETERS.get(1).isEmpty()
+                || this.PARAMETERS.get(2).isEmpty()
+                || this.PARAMETERS.get(3).isEmpty()) {
+            Utility.UI.showInfoMessage(getRootPane(), "Error! Please check if the connection parameters are valid.");
+        } else {
+            if (testDBConnection(PARAMETERS)) {
+                Utility.UI.showInfoMessage(getRootPane(), "Connection established. It's working!");
+            } else {
+                Utility.UI.showInfoMessage(getRootPane(), "Failed to connect.");
+            }
+        }
     }//GEN-LAST:event_testConnectionActionPerformed
+
+    private boolean testDBConnection(List<String> params) {
+        return DBConnection.testNewConnection(params);
+    }
 
     /**
      * @param args the command line arguments
@@ -231,7 +263,9 @@ public class ConnectionParameters extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConnectionParameters().setVisible(true);
+                ConnectionParameters cp = new ConnectionParameters();
+                cp.setVisible(true);
+
             }
         });
     }

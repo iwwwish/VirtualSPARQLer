@@ -2,8 +2,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.fraunhofer.scai.bio</groupId>
-    <artifactId>VirtualSPARQLer</artifactId>
+    <groupId>de.fhg.scai.bio</groupId>
+    <artifactId>Virtual-Sparqler</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
@@ -20,6 +20,56 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2.1</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/assembly.xml</descriptor>
+                    </descriptors>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath> 
+                            <mainClass>de.fhg.scai.bio.gui.VirtualSparqler</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>de.fhg.scai.bio.gui.VirtualSparqler</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
         </plugins>
     </build>
     <properties>
@@ -33,17 +83,19 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
-        <!-- Apache Jena ARQ Libraries-->
-        <dependency>
-            <groupId>com.hp.hpl.jena</groupId>
-            <artifactId>arq</artifactId>
-            <version>2.8.8</version>
-        </dependency>
+        
         <!-- Seaglass Look and Feel-->
         <dependency>
             <groupId>com.seaglasslookandfeel</groupId>
             <artifactId>seaglasslookandfeel</artifactId>
             <version>0.2</version>
         </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.31</version>
+        </dependency>
     </dependencies>
+    <description>VirtualSPARQLer is a Java desktop utility for querying a relational database 
+        (e.g. MySQL) via a virtual RDF graph based SPARQL endpoint.</description>
 </project>

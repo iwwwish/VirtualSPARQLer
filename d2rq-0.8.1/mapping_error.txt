@@ -1,0 +1,23 @@
+17:06:56 WARN  MappingGenerator     :: Sorry, I don't know which columns to put into the uriPattern
+17:06:56 WARN  MappingGenerator     ::     for "entrezgeneids" because the table doesn't have a primary key.
+17:06:56 WARN  MappingGenerator     ::     Please specify it manually.
+17:06:57 WARN  MappingGenerator     :: Sorry, I don't know which columns to put into the uriPattern
+17:06:57 WARN  MappingGenerator     ::     for "ndd_drugs_activities4m_bdb" because the table doesn't have a primary key.
+17:06:57 WARN  MappingGenerator     ::     Please specify it manually.
+17:06:57 WARN  MappingGenerator     :: Sorry, I don't know which columns to put into the uriPattern
+17:06:57 WARN  MappingGenerator     ::     for "ndd_drugs_activity4mkidb" because the table doesn't have a primary key.
+17:06:57 WARN  MappingGenerator     ::     Please specify it manually.
+17:06:57 WARN  MappingGenerator     :: Sorry, I don't know which columns to put into the uriPattern
+17:06:57 WARN  MappingGenerator     ::     for "ndd_drugs_ki4m_chembl" because the table doesn't have a primary key.
+17:06:57 WARN  MappingGenerator     ::     Please specify it manually.
+17:06:59 WARN  MappingGenerator     :: Sorry, I don't know which columns to put into the uriPattern
+17:06:59 WARN  MappingGenerator     ::     for "testtabel" because the table doesn't have a primary key.
+17:06:59 WARN  MappingGenerator     ::     Please specify it manually.
+17:06:59 WARN  MappingGenerator     :: Sorry, I don't know which columns to put into the uriPattern
+17:06:59 WARN  MappingGenerator     ::     for "all_drugs" because the table doesn't have a primary key.
+17:06:59 WARN  MappingGenerator     ::     Please specify it manually.
+17:06:59 WARN  MappingGenerator     :: Sorry, I don't know which columns to put into the uriPattern
+17:06:59 WARN  MappingGenerator     ::     for "hbp_drug_SE" because the table doesn't have a primary key.
+17:06:59 WARN  MappingGenerator     ::     Please specify it manually.
+Database exception (E43)
+

@@ -85,7 +85,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="DejaVu Sans Mono" size="12" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="New Connection"/>
+            <Property name="text" type="java.lang.String" value="New Mapping"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newConnectionActionPerformed"/>
@@ -122,7 +122,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <Component id="rpPanel" min="-2" max="-2" attributes="0"/>
+                  <Component id="rpPanel" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="queryPanel" alignment="1" max="32767" attributes="0"/>
@@ -169,7 +169,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="executeQuery" min="-2" pref="54" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="saveQuery" min="-2" pref="79" max="-2" attributes="0"/>
+                      <Component id="saveResult" min="-2" pref="79" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -183,7 +183,7 @@
                           <Component id="executionTime" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="addPrefixes" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="executeQuery" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="saveQuery" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="saveResult" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -219,7 +219,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="executeQueryActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="saveQuery">
+            <Component class="javax.swing.JButton" name="saveResult">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="DejaVu Sans Mono" size="12" style="0"/>
@@ -227,7 +227,7 @@
                 <Property name="text" type="java.lang.String" value="Save"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveQueryActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveResultActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="addPrefixes">

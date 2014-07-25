@@ -16,6 +16,11 @@
  */
 package de.fhg.scai.bio.utils;
 
+import java.awt.Dimension;
+import java.awt.GraphicsConfiguration;
+import java.awt.Rectangle;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.*;
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -31,6 +36,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -228,19 +234,24 @@ public class Utility {
     }
 
     public static String stripExtension(File file) {
-        mylogger.log(Level.INFO, "Stripping extension: {0}", file.getName());
-        int i = file.getName().lastIndexOf(".");
-        String s = file.getName().substring(0, i);
-        mylogger.log(Level.FINE, ". location{0}", i);
-        mylogger.log(Level.FINE, "name {0}", s);
-        return s;
+        try {
+            int i = file.getName().lastIndexOf(".");
+            String s = file.getName().substring(0, i);
+            return s;
+        } catch (Exception ex) {
+            return null;
+        }
     }
 
     public static String getExtension(File file) {
         String fname = file.getName();
         mylogger.log(Level.INFO, "Getting extension: {0}", fname);
-        String fNoext = stripExtension(file);
-        return fname.substring(fname.indexOf(fNoext) + fNoext.length());
+        try {
+            String fNoext = stripExtension(file);
+            return fname.substring(fname.indexOf(fNoext) + fNoext.length());
+        } catch (Exception ex) {
+            return null;
+        }
     }
 
     public static String fromListToString(List<String> input) {
@@ -671,18 +682,21 @@ public class Utility {
             File f = null;
             try {
                 JFileChooser jfc = new JFileChooser();
-                
-                    FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter("XML", "xml");
-                    jfc.addChoosableFileFilter(xmlfilter);
-                
-                
-                    FileNameExtensionFilter txtfilter = new FileNameExtensionFilter("Text", "txt");
-                    jfc.addChoosableFileFilter(txtfilter);
-                
-                
-                    FileNameExtensionFilter jsonfilter = new FileNameExtensionFilter("JSON", "json");
-                    jfc.addChoosableFileFilter(jsonfilter);
-                
+
+                FileNameExtensionFilter csvfilter = new FileNameExtensionFilter("CSV", "csv");
+                jfc.addChoosableFileFilter(csvfilter);
+
+                FileNameExtensionFilter tsvfilter = new FileNameExtensionFilter("TSV", "tsv");
+                jfc.addChoosableFileFilter(tsvfilter);
+
+                FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter("XML", "xml");
+                jfc.addChoosableFileFilter(xmlfilter);
+
+                FileNameExtensionFilter txtfilter = new FileNameExtensionFilter("Text", "txt");
+                jfc.addChoosableFileFilter(txtfilter);
+
+                FileNameExtensionFilter jsonfilter = new FileNameExtensionFilter("JSON", "json");
+                jfc.addChoosableFileFilter(jsonfilter);
 
                 jfc.setDialogTitle("VirtualSPARQLer: FileSaver");
                 jfc.showSaveDialog(parent);
@@ -709,20 +723,107 @@ public class Utility {
             JOptionPane.showMessageDialog(parent, message, "VirtualSPARQLer: Info", JOptionPane.INFORMATION_MESSAGE);
 
         }
+
+        public static void adjustScreenPosition(JFrame ui) {
+            GraphicsConfiguration gc = ui.getGraphicsConfiguration();
+            Rectangle bounds = gc.getBounds();
+            Dimension size = ui.getPreferredSize();
+            ui.setLocation((int) ((bounds.width / 2) - (size.getWidth() / 2)),
+                    (int) ((bounds.height / 2) - (size.getHeight() / 2)));
+        }
+
+        public static void addUIClosingListener(final JFrame ui) {
+            ui.addWindowListener(new WindowListener() {
+
+                @Override
+                public void windowOpened(WindowEvent e) {
+
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+                    int selectedOption = JOptionPane.showConfirmDialog(null, "Are you sure you want to close VirtualSPARQLer?",
+                            "VirtualSPARQLer",
+                            JOptionPane.YES_NO_OPTION);
+                    // if choosen Yes, then the application will be closed
+                    if (selectedOption == JOptionPane.YES_OPTION) {
+                        System.exit(0);
+                    } else {
+                        ui.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                    }
+
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+
+            });
+        }
+
+        public static void addParamsClosingListener(final JFrame ui) {
+            ui.addWindowListener(new WindowListener() {
+
+                @Override
+                public void windowOpened(WindowEvent e) {
+
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+                    int selectedOption = JOptionPane.showConfirmDialog(null, "Are you sure you want to close the window?",
+                            "VirtualSPARQLer",
+                            JOptionPane.YES_NO_OPTION);
+                    // if choosen Yes, then the application will be closed
+                    if (selectedOption == JOptionPane.YES_OPTION) {
+                        ui.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    } else {
+                        ui.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                    }
+
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+
+            });
+        }
     }
 }
-// -DEAD CODE -
-//    public static File createOutFile(DIR type, String parent, String child) throws IOException {
-//
-//        File parentDir = new File((File) curOutDir.get(type), parent);
-//        if (parentDir.mkdir()) {
-//            File childFile = new File(parentDir, child); // then create child inside "parent"
-//            if (childFile.createNewFile()) {
-//                return childFile;
-//            }
-//        } // create directory inside "type"
-//
-//        return null;
-//
-//    }
-

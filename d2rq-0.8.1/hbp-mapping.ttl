@@ -1,0 +1,2291 @@
+@prefix map: <#> .
+@prefix db: <> .
+@prefix vocab: <vocab/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "com.mysql.jdbc.Driver";
+	d2rq:jdbcDSN "jdbc:mysql://fraenkel:3306/HBP";
+	d2rq:username "vishal";
+	d2rq:password "Keins123";
+	jdbc:autoReconnect "true";
+	jdbc:zeroDateTimeBehavior "convertToNull";
+	.
+
+# Table Mesh_disease
+map:Mesh_disease a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "Mesh_disease/@@Mesh_disease.id@@";
+	d2rq:class vocab:Mesh_disease;
+	d2rq:classDefinitionLabel "Mesh_disease";
+	.
+map:Mesh_disease__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Mesh_disease;
+	d2rq:property rdfs:label;
+	d2rq:pattern "Mesh_disease #@@Mesh_disease.id@@";
+	.
+map:Mesh_disease_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Mesh_disease;
+	d2rq:property vocab:Mesh_disease_id;
+	d2rq:propertyDefinitionLabel "Mesh_disease id";
+	d2rq:column "Mesh_disease.id";
+	d2rq:datatype xsd:integer;
+	.
+map:Mesh_disease_Mesh_unique_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Mesh_disease;
+	d2rq:property vocab:Mesh_disease_Mesh_unique_id;
+	d2rq:propertyDefinitionLabel "Mesh_disease Mesh_unique_id";
+	d2rq:column "Mesh_disease.Mesh_unique_id";
+	.
+map:Mesh_disease_disease_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Mesh_disease;
+	d2rq:property vocab:Mesh_disease_disease_name;
+	d2rq:propertyDefinitionLabel "Mesh_disease disease_name";
+	d2rq:column "Mesh_disease.disease_name";
+	.
+
+# Table brain_interactome_v2
+map:brain_interactome_v2 a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "brain_interactome_v2/@@brain_interactome_v2.id@@";
+	d2rq:class vocab:brain_interactome_v2;
+	d2rq:classDefinitionLabel "brain_interactome_v2";
+	.
+map:brain_interactome_v2__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property rdfs:label;
+	d2rq:pattern "brain_interactome_v2 #@@brain_interactome_v2.id@@";
+	.
+map:brain_interactome_v2_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_id;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 id";
+	d2rq:column "brain_interactome_v2.id";
+	d2rq:datatype xsd:integer;
+	.
+map:brain_interactome_v2_genesymbol1 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_genesymbol1;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 genesymbol1";
+	d2rq:column "brain_interactome_v2.genesymbol1";
+	.
+map:brain_interactome_v2_genesymbol2 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_genesymbol2;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 genesymbol2";
+	d2rq:column "brain_interactome_v2.genesymbol2";
+	.
+map:brain_interactome_v2_databases a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_databases;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 databases";
+	d2rq:column "brain_interactome_v2.databases";
+	.
+map:brain_interactome_v2_direct_evidence a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_direct_evidence;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 direct_evidence";
+	d2rq:column "brain_interactome_v2.direct_evidence";
+	.
+map:brain_interactome_v2_supporting_evidence a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_supporting_evidence;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 supporting_evidence";
+	d2rq:column "brain_interactome_v2.supporting_evidence";
+	.
+map:brain_interactome_v2_pmids a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_pmids;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 pmids";
+	d2rq:column "brain_interactome_v2.pmids";
+	.
+map:brain_interactome_v2_amygdala a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_amygdala;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 amygdala";
+	d2rq:column "brain_interactome_v2.amygdala";
+	d2rq:datatype xsd:boolean;
+	.
+map:brain_interactome_v2_cerebellumpeduncles a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_cerebellumpeduncles;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 cerebellumpeduncles";
+	d2rq:column "brain_interactome_v2.cerebellumpeduncles";
+	d2rq:datatype xsd:boolean;
+	.
+map:brain_interactome_v2_cingulatecortex a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_cingulatecortex;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 cingulatecortex";
+	d2rq:column "brain_interactome_v2.cingulatecortex";
+	d2rq:datatype xsd:boolean;
+	.
+map:brain_interactome_v2_hypothalamus a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_hypothalamus;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 hypothalamus";
+	d2rq:column "brain_interactome_v2.hypothalamus";
+	d2rq:datatype xsd:boolean;
+	.
+map:brain_interactome_v2_medullaoblongata a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_medullaoblongata;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 medullaoblongata";
+	d2rq:column "brain_interactome_v2.medullaoblongata";
+	d2rq:datatype xsd:boolean;
+	.
+map:brain_interactome_v2_occipitallobe a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_occipitallobe;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 occipitallobe";
+	d2rq:column "brain_interactome_v2.occipitallobe";
+	d2rq:datatype xsd:boolean;
+	.
+map:brain_interactome_v2_parietallobe a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_parietallobe;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 parietallobe";
+	d2rq:column "brain_interactome_v2.parietallobe";
+	d2rq:datatype xsd:boolean;
+	.
+map:brain_interactome_v2_pons a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_pons;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 pons";
+	d2rq:column "brain_interactome_v2.pons";
+	d2rq:datatype xsd:boolean;
+	.
+map:brain_interactome_v2_prefrontalcortex a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_prefrontalcortex;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 prefrontalcortex";
+	d2rq:column "brain_interactome_v2.prefrontalcortex";
+	d2rq:datatype xsd:boolean;
+	.
+map:brain_interactome_v2_temporallobe a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_temporallobe;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 temporallobe";
+	d2rq:column "brain_interactome_v2.temporallobe";
+	d2rq:datatype xsd:boolean;
+	.
+map:brain_interactome_v2_thalamus a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_thalamus;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 thalamus";
+	d2rq:column "brain_interactome_v2.thalamus";
+	d2rq:datatype xsd:boolean;
+	.
+map:brain_interactome_v2_wholebrain a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_wholebrain;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 wholebrain";
+	d2rq:column "brain_interactome_v2.wholebrain";
+	d2rq:datatype xsd:boolean;
+	.
+map:brain_interactome_v2_caudatenucleus a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_caudatenucleus;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 caudatenucleus";
+	d2rq:column "brain_interactome_v2.caudatenucleus";
+	d2rq:datatype xsd:boolean;
+	.
+map:brain_interactome_v2_cerebellum a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_cerebellum;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 cerebellum";
+	d2rq:column "brain_interactome_v2.cerebellum";
+	d2rq:datatype xsd:boolean;
+	.
+map:brain_interactome_v2_globuspallidus a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_globuspallidus;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 globuspallidus";
+	d2rq:column "brain_interactome_v2.globuspallidus";
+	d2rq:datatype xsd:boolean;
+	.
+map:brain_interactome_v2_subthalamicnucleus a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_interactome_v2;
+	d2rq:property vocab:brain_interactome_v2_subthalamicnucleus;
+	d2rq:propertyDefinitionLabel "brain_interactome_v2 subthalamicnucleus";
+	d2rq:column "brain_interactome_v2.subthalamicnucleus";
+	d2rq:datatype xsd:boolean;
+	.
+
+# Table brain_regions_with_cells
+map:brain_regions_with_cells a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "brain_regions_with_cells/@@brain_regions_with_cells.id@@";
+	d2rq:class vocab:brain_regions_with_cells;
+	d2rq:classDefinitionLabel "brain_regions_with_cells";
+	.
+map:brain_regions_with_cells__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_regions_with_cells;
+	d2rq:property rdfs:label;
+	d2rq:pattern "brain_regions_with_cells #@@brain_regions_with_cells.id@@";
+	.
+map:brain_regions_with_cells_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_regions_with_cells;
+	d2rq:property vocab:brain_regions_with_cells_id;
+	d2rq:propertyDefinitionLabel "brain_regions_with_cells id";
+	d2rq:column "brain_regions_with_cells.id";
+	d2rq:datatype xsd:integer;
+	.
+map:brain_regions_with_cells_prominerid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_regions_with_cells;
+	d2rq:property vocab:brain_regions_with_cells_prominerid;
+	d2rq:propertyDefinitionLabel "brain_regions_with_cells prominerid";
+	d2rq:column "brain_regions_with_cells.prominerid";
+	.
+map:brain_regions_with_cells_ontoid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_regions_with_cells;
+	d2rq:property vocab:brain_regions_with_cells_ontoid;
+	d2rq:propertyDefinitionLabel "brain_regions_with_cells ontoid";
+	d2rq:column "brain_regions_with_cells.ontoid";
+	.
+map:brain_regions_with_cells_label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:brain_regions_with_cells;
+	d2rq:property vocab:brain_regions_with_cells_label;
+	d2rq:propertyDefinitionLabel "brain_regions_with_cells label";
+	d2rq:column "brain_regions_with_cells.label";
+	.
+
+# Table ctd_chem_gene_interactions
+map:ctd_chem_gene_interactions a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "ctd_chem_gene_interactions/@@ctd_chem_gene_interactions.id@@";
+	d2rq:class vocab:ctd_chem_gene_interactions;
+	d2rq:classDefinitionLabel "ctd_chem_gene_interactions";
+	.
+map:ctd_chem_gene_interactions__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ctd_chem_gene_interactions;
+	d2rq:property rdfs:label;
+	d2rq:pattern "ctd_chem_gene_interactions #@@ctd_chem_gene_interactions.id@@";
+	.
+map:ctd_chem_gene_interactions_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ctd_chem_gene_interactions;
+	d2rq:property vocab:ctd_chem_gene_interactions_id;
+	d2rq:propertyDefinitionLabel "ctd_chem_gene_interactions id";
+	d2rq:column "ctd_chem_gene_interactions.id";
+	d2rq:datatype xsd:integer;
+	.
+map:ctd_chem_gene_interactions_chemical_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ctd_chem_gene_interactions;
+	d2rq:property vocab:ctd_chem_gene_interactions_chemical_name;
+	d2rq:propertyDefinitionLabel "ctd_chem_gene_interactions chemical_name";
+	d2rq:column "ctd_chem_gene_interactions.chemical_name";
+	.
+map:ctd_chem_gene_interactions_chemicalid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ctd_chem_gene_interactions;
+	d2rq:property vocab:ctd_chem_gene_interactions_chemicalid;
+	d2rq:propertyDefinitionLabel "ctd_chem_gene_interactions chemicalid";
+	d2rq:column "ctd_chem_gene_interactions.chemicalid";
+	.
+map:ctd_chem_gene_interactions_casrn a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ctd_chem_gene_interactions;
+	d2rq:property vocab:ctd_chem_gene_interactions_casrn;
+	d2rq:propertyDefinitionLabel "ctd_chem_gene_interactions casrn";
+	d2rq:column "ctd_chem_gene_interactions.casrn";
+	.
+map:ctd_chem_gene_interactions_genesymbol a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ctd_chem_gene_interactions;
+	d2rq:property vocab:ctd_chem_gene_interactions_genesymbol;
+	d2rq:propertyDefinitionLabel "ctd_chem_gene_interactions genesymbol";
+	d2rq:column "ctd_chem_gene_interactions.genesymbol";
+	.
+map:ctd_chem_gene_interactions_interaction a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ctd_chem_gene_interactions;
+	d2rq:property vocab:ctd_chem_gene_interactions_interaction;
+	d2rq:propertyDefinitionLabel "ctd_chem_gene_interactions interaction";
+	d2rq:column "ctd_chem_gene_interactions.interaction";
+	.
+map:ctd_chem_gene_interactions_interactionaction a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ctd_chem_gene_interactions;
+	d2rq:property vocab:ctd_chem_gene_interactions_interactionaction;
+	d2rq:propertyDefinitionLabel "ctd_chem_gene_interactions interactionaction";
+	d2rq:column "ctd_chem_gene_interactions.interactionaction";
+	.
+map:ctd_chem_gene_interactions_pubmedids a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ctd_chem_gene_interactions;
+	d2rq:property vocab:ctd_chem_gene_interactions_pubmedids;
+	d2rq:propertyDefinitionLabel "ctd_chem_gene_interactions pubmedids";
+	d2rq:column "ctd_chem_gene_interactions.pubmedids";
+	.
+
+# Table drug_pathway_links
+map:drug_pathway_links a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "drug_pathway_links/@@drug_pathway_links.id@@";
+	d2rq:class vocab:drug_pathway_links;
+	d2rq:classDefinitionLabel "drug_pathway_links";
+	.
+map:drug_pathway_links__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:drug_pathway_links;
+	d2rq:property rdfs:label;
+	d2rq:pattern "drug_pathway_links #@@drug_pathway_links.id@@";
+	.
+map:drug_pathway_links_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:drug_pathway_links;
+	d2rq:property vocab:drug_pathway_links_id;
+	d2rq:propertyDefinitionLabel "drug_pathway_links id";
+	d2rq:column "drug_pathway_links.id";
+	d2rq:datatype xsd:integer;
+	.
+map:drug_pathway_links_PMID a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:drug_pathway_links;
+	d2rq:property vocab:drug_pathway_links_PMID;
+	d2rq:propertyDefinitionLabel "drug_pathway_links PMID";
+	d2rq:column "drug_pathway_links.PMID";
+	.
+map:drug_pathway_links_HBP_ID a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:drug_pathway_links;
+	d2rq:property vocab:drug_pathway_links_HBP_ID;
+	d2rq:propertyDefinitionLabel "drug_pathway_links HBP_ID";
+	d2rq:column "drug_pathway_links.HBP_ID";
+	.
+map:drug_pathway_links_PTS_ID a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:drug_pathway_links;
+	d2rq:property vocab:drug_pathway_links_PTS_ID;
+	d2rq:propertyDefinitionLabel "drug_pathway_links PTS_ID";
+	d2rq:column "drug_pathway_links.PTS_ID";
+	.
+map:drug_pathway_links_evidence_sentence a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:drug_pathway_links;
+	d2rq:property vocab:drug_pathway_links_evidence_sentence;
+	d2rq:propertyDefinitionLabel "drug_pathway_links evidence_sentence";
+	d2rq:column "drug_pathway_links.evidence_sentence";
+	.
+map:drug_pathway_links_mechanistic_effect a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:drug_pathway_links;
+	d2rq:property vocab:drug_pathway_links_mechanistic_effect;
+	d2rq:propertyDefinitionLabel "drug_pathway_links mechanistic_effect";
+	d2rq:column "drug_pathway_links.mechanistic_effect";
+	.
+map:drug_pathway_links_disease a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:drug_pathway_links;
+	d2rq:property vocab:drug_pathway_links_disease;
+	d2rq:propertyDefinitionLabel "drug_pathway_links disease";
+	d2rq:column "drug_pathway_links.disease";
+	d2rq:datatype xsd:integer;
+	.
+
+# Table drugs_atc_codes
+map:drugs_atc_codes a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "drugs_atc_codes/@@drugs_atc_codes.id@@";
+	d2rq:class vocab:drugs_atc_codes;
+	d2rq:classDefinitionLabel "drugs_atc_codes";
+	.
+map:drugs_atc_codes__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:drugs_atc_codes;
+	d2rq:property rdfs:label;
+	d2rq:pattern "drugs_atc_codes #@@drugs_atc_codes.id@@";
+	.
+map:drugs_atc_codes_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:drugs_atc_codes;
+	d2rq:property vocab:drugs_atc_codes_id;
+	d2rq:propertyDefinitionLabel "drugs_atc_codes id";
+	d2rq:column "drugs_atc_codes.id";
+	d2rq:datatype xsd:integer;
+	.
+map:drugs_atc_codes_pubchemid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:drugs_atc_codes;
+	d2rq:property vocab:drugs_atc_codes_pubchemid;
+	d2rq:propertyDefinitionLabel "drugs_atc_codes pubchemid";
+	d2rq:column "drugs_atc_codes.pubchemid";
+	d2rq:datatype xsd:integer;
+	.
+map:drugs_atc_codes_drugname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:drugs_atc_codes;
+	d2rq:property vocab:drugs_atc_codes_drugname;
+	d2rq:propertyDefinitionLabel "drugs_atc_codes drugname";
+	d2rq:column "drugs_atc_codes.drugname";
+	.
+map:drugs_atc_codes_atc_code a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:drugs_atc_codes;
+	d2rq:property vocab:drugs_atc_codes_atc_code;
+	d2rq:propertyDefinitionLabel "drugs_atc_codes atc_code";
+	d2rq:column "drugs_atc_codes.atc_code";
+	.
+
+# Table entrezgeneids
+map:entrezgeneids a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	# Sorry, I don't know which columns to put into the uriPattern
+	#     for "entrezgeneids" because the table doesn't have a primary key.
+	#     Please specify it manually.
+	d2rq:uriPattern "entrezgeneids";
+	d2rq:class vocab:entrezgeneids;
+	d2rq:classDefinitionLabel "entrezgeneids";
+	.
+map:entrezgeneids_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:entrezgeneids;
+	d2rq:property vocab:entrezgeneids_id;
+	d2rq:propertyDefinitionLabel "entrezgeneids id";
+	d2rq:column "entrezgeneids.id";
+	d2rq:datatype xsd:integer;
+	.
+
+# Table first_level_atc_codes
+map:first_level_atc_codes a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "first_level_atc_codes/@@first_level_atc_codes.id@@";
+	d2rq:class vocab:first_level_atc_codes;
+	d2rq:classDefinitionLabel "first_level_atc_codes";
+	.
+map:first_level_atc_codes__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:first_level_atc_codes;
+	d2rq:property rdfs:label;
+	d2rq:pattern "first_level_atc_codes #@@first_level_atc_codes.id@@";
+	.
+map:first_level_atc_codes_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:first_level_atc_codes;
+	d2rq:property vocab:first_level_atc_codes_id;
+	d2rq:propertyDefinitionLabel "first_level_atc_codes id";
+	d2rq:column "first_level_atc_codes.id";
+	d2rq:datatype xsd:integer;
+	.
+map:first_level_atc_codes_level a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:first_level_atc_codes;
+	d2rq:property vocab:first_level_atc_codes_level;
+	d2rq:propertyDefinitionLabel "first_level_atc_codes level";
+	d2rq:column "first_level_atc_codes.level";
+	.
+map:first_level_atc_codes_description a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:first_level_atc_codes;
+	d2rq:property vocab:first_level_atc_codes_description;
+	d2rq:propertyDefinitionLabel "first_level_atc_codes description";
+	d2rq:column "first_level_atc_codes.description";
+	.
+
+# Table genes
+map:genes a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "genes/@@genes.prominerid|urlify@@";
+	d2rq:class vocab:genes;
+	d2rq:classDefinitionLabel "genes";
+	.
+map:genes__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:genes;
+	d2rq:property rdfs:label;
+	d2rq:pattern "genes #@@genes.prominerid@@";
+	.
+map:genes_prominerid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:genes;
+	d2rq:property vocab:genes_prominerid;
+	d2rq:propertyDefinitionLabel "genes prominerid";
+	d2rq:column "genes.prominerid";
+	.
+map:genes_label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:genes;
+	d2rq:property vocab:genes_label;
+	d2rq:propertyDefinitionLabel "genes label";
+	d2rq:column "genes.label";
+	.
+
+# Table genes_entrezgeneids_links_tmp
+map:genes_entrezgeneids_links_tmp a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "genes_entrezgeneids_links_tmp/@@genes_entrezgeneids_links_tmp.id@@";
+	d2rq:class vocab:genes_entrezgeneids_links_tmp;
+	d2rq:classDefinitionLabel "genes_entrezgeneids_links_tmp";
+	.
+map:genes_entrezgeneids_links_tmp__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:genes_entrezgeneids_links_tmp;
+	d2rq:property rdfs:label;
+	d2rq:pattern "genes_entrezgeneids_links_tmp #@@genes_entrezgeneids_links_tmp.id@@";
+	.
+map:genes_entrezgeneids_links_tmp_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:genes_entrezgeneids_links_tmp;
+	d2rq:property vocab:genes_entrezgeneids_links_tmp_id;
+	d2rq:propertyDefinitionLabel "genes_entrezgeneids_links_tmp id";
+	d2rq:column "genes_entrezgeneids_links_tmp.id";
+	d2rq:datatype xsd:integer;
+	.
+map:genes_entrezgeneids_links_tmp_prominerid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:genes_entrezgeneids_links_tmp;
+	d2rq:property vocab:genes_entrezgeneids_links_tmp_prominerid;
+	d2rq:propertyDefinitionLabel "genes_entrezgeneids_links_tmp prominerid";
+	d2rq:column "genes_entrezgeneids_links_tmp.prominerid";
+	.
+map:genes_entrezgeneids_links_tmp_entrezgeneid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:genes_entrezgeneids_links_tmp;
+	d2rq:property vocab:genes_entrezgeneids_links_tmp_entrezgeneid;
+	d2rq:propertyDefinitionLabel "genes_entrezgeneids_links_tmp entrezgeneid";
+	d2rq:column "genes_entrezgeneids_links_tmp.entrezgeneid";
+	d2rq:datatype xsd:integer;
+	.
+
+# Table genes_swissprotids_links_tmp
+map:genes_swissprotids_links_tmp a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "genes_swissprotids_links_tmp/@@genes_swissprotids_links_tmp.id@@";
+	d2rq:class vocab:genes_swissprotids_links_tmp;
+	d2rq:classDefinitionLabel "genes_swissprotids_links_tmp";
+	.
+map:genes_swissprotids_links_tmp__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:genes_swissprotids_links_tmp;
+	d2rq:property rdfs:label;
+	d2rq:pattern "genes_swissprotids_links_tmp #@@genes_swissprotids_links_tmp.id@@";
+	.
+map:genes_swissprotids_links_tmp_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:genes_swissprotids_links_tmp;
+	d2rq:property vocab:genes_swissprotids_links_tmp_id;
+	d2rq:propertyDefinitionLabel "genes_swissprotids_links_tmp id";
+	d2rq:column "genes_swissprotids_links_tmp.id";
+	d2rq:datatype xsd:integer;
+	.
+map:genes_swissprotids_links_tmp_prominerid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:genes_swissprotids_links_tmp;
+	d2rq:property vocab:genes_swissprotids_links_tmp_prominerid;
+	d2rq:propertyDefinitionLabel "genes_swissprotids_links_tmp prominerid";
+	d2rq:column "genes_swissprotids_links_tmp.prominerid";
+	.
+map:genes_swissprotids_links_tmp_swissprotid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:genes_swissprotids_links_tmp;
+	d2rq:property vocab:genes_swissprotids_links_tmp_swissprotid;
+	d2rq:propertyDefinitionLabel "genes_swissprotids_links_tmp swissprotid";
+	d2rq:column "genes_swissprotids_links_tmp.swissprotid";
+	.
+
+# Table hbp_drugs
+map:hbp_drugs a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "hbp_drugs/@@hbp_drugs.drugname|urlify@@";
+	d2rq:class vocab:hbp_drugs;
+	d2rq:classDefinitionLabel "hbp_drugs";
+	.
+map:hbp_drugs__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs;
+	d2rq:property rdfs:label;
+	d2rq:pattern "hbp_drugs #@@hbp_drugs.drugname@@";
+	.
+map:hbp_drugs_drugname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs;
+	d2rq:property vocab:hbp_drugs_drugname;
+	d2rq:propertyDefinitionLabel "hbp_drugs drugname";
+	d2rq:column "hbp_drugs.drugname";
+	.
+map:hbp_drugs_drugid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs;
+	d2rq:property vocab:hbp_drugs_drugid;
+	d2rq:propertyDefinitionLabel "hbp_drugs drugid";
+	d2rq:column "hbp_drugs.drugid";
+	.
+map:hbp_drugs_stitch_cid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs;
+	d2rq:property vocab:hbp_drugs_stitch_cid;
+	d2rq:propertyDefinitionLabel "hbp_drugs stitch_cid";
+	d2rq:column "hbp_drugs.stitch_cid";
+	.
+map:hbp_drugs_drugstatus a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs;
+	d2rq:property vocab:hbp_drugs_drugstatus;
+	d2rq:propertyDefinitionLabel "hbp_drugs drugstatus";
+	d2rq:column "hbp_drugs.drugstatus";
+	.
+map:hbp_drugs_casrn a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs;
+	d2rq:property vocab:hbp_drugs_casrn;
+	d2rq:propertyDefinitionLabel "hbp_drugs casrn";
+	d2rq:column "hbp_drugs.casrn";
+	.
+map:hbp_drugs_diseases a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs;
+	d2rq:property vocab:hbp_drugs_diseases;
+	d2rq:propertyDefinitionLabel "hbp_drugs diseases";
+	d2rq:column "hbp_drugs.diseases";
+	.
+map:hbp_drugs_diseasecategories a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs;
+	d2rq:property vocab:hbp_drugs_diseasecategories;
+	d2rq:propertyDefinitionLabel "hbp_drugs diseasecategories";
+	d2rq:column "hbp_drugs.diseasecategories";
+	.
+map:hbp_drugs_pubmedids a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs;
+	d2rq:property vocab:hbp_drugs_pubmedids;
+	d2rq:propertyDefinitionLabel "hbp_drugs pubmedids";
+	d2rq:column "hbp_drugs.pubmedids";
+	.
+map:hbp_drugs_directevidence a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs;
+	d2rq:property vocab:hbp_drugs_directevidence;
+	d2rq:propertyDefinitionLabel "hbp_drugs directevidence";
+	d2rq:column "hbp_drugs.directevidence";
+	.
+
+# Table hbp_drugs_pathways
+map:hbp_drugs_pathways a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "hbp_drugs_pathways/@@hbp_drugs_pathways.id@@";
+	d2rq:class vocab:hbp_drugs_pathways;
+	d2rq:classDefinitionLabel "hbp_drugs_pathways";
+	.
+map:hbp_drugs_pathways__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs_pathways;
+	d2rq:property rdfs:label;
+	d2rq:pattern "hbp_drugs_pathways #@@hbp_drugs_pathways.id@@";
+	.
+map:hbp_drugs_pathways_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs_pathways;
+	d2rq:property vocab:hbp_drugs_pathways_id;
+	d2rq:propertyDefinitionLabel "hbp_drugs_pathways id";
+	d2rq:column "hbp_drugs_pathways.id";
+	d2rq:datatype xsd:integer;
+	.
+map:hbp_drugs_pathways_chemicalname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs_pathways;
+	d2rq:property vocab:hbp_drugs_pathways_chemicalname;
+	d2rq:propertyDefinitionLabel "hbp_drugs_pathways chemicalname";
+	d2rq:column "hbp_drugs_pathways.chemicalname";
+	.
+map:hbp_drugs_pathways_chemicalid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs_pathways;
+	d2rq:property vocab:hbp_drugs_pathways_chemicalid;
+	d2rq:propertyDefinitionLabel "hbp_drugs_pathways chemicalid";
+	d2rq:column "hbp_drugs_pathways.chemicalid";
+	.
+map:hbp_drugs_pathways_pathwayname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs_pathways;
+	d2rq:property vocab:hbp_drugs_pathways_pathwayname;
+	d2rq:propertyDefinitionLabel "hbp_drugs_pathways pathwayname";
+	d2rq:column "hbp_drugs_pathways.pathwayname";
+	.
+map:hbp_drugs_pathways_pathwayid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs_pathways;
+	d2rq:property vocab:hbp_drugs_pathways_pathwayid;
+	d2rq:propertyDefinitionLabel "hbp_drugs_pathways pathwayid";
+	d2rq:column "hbp_drugs_pathways.pathwayid";
+	.
+map:hbp_drugs_pathways_pvalue a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs_pathways;
+	d2rq:property vocab:hbp_drugs_pathways_pvalue;
+	d2rq:propertyDefinitionLabel "hbp_drugs_pathways pvalue";
+	d2rq:column "hbp_drugs_pathways.pvalue";
+	d2rq:datatype xsd:double;
+	.
+map:hbp_drugs_pathways_correctedpvalue a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs_pathways;
+	d2rq:property vocab:hbp_drugs_pathways_correctedpvalue;
+	d2rq:propertyDefinitionLabel "hbp_drugs_pathways correctedpvalue";
+	d2rq:column "hbp_drugs_pathways.correctedpvalue";
+	d2rq:datatype xsd:double;
+	.
+map:hbp_drugs_pathways_targetmatchqty a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs_pathways;
+	d2rq:property vocab:hbp_drugs_pathways_targetmatchqty;
+	d2rq:propertyDefinitionLabel "hbp_drugs_pathways targetmatchqty";
+	d2rq:column "hbp_drugs_pathways.targetmatchqty";
+	d2rq:datatype xsd:integer;
+	.
+map:hbp_drugs_pathways_targettotalqty a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs_pathways;
+	d2rq:property vocab:hbp_drugs_pathways_targettotalqty;
+	d2rq:propertyDefinitionLabel "hbp_drugs_pathways targettotalqty";
+	d2rq:column "hbp_drugs_pathways.targettotalqty";
+	d2rq:datatype xsd:integer;
+	.
+map:hbp_drugs_pathways_backgroundmatchqty a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs_pathways;
+	d2rq:property vocab:hbp_drugs_pathways_backgroundmatchqty;
+	d2rq:propertyDefinitionLabel "hbp_drugs_pathways backgroundmatchqty";
+	d2rq:column "hbp_drugs_pathways.backgroundmatchqty";
+	d2rq:datatype xsd:integer;
+	.
+map:hbp_drugs_pathways_backgroundtotalqty a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugs_pathways;
+	d2rq:property vocab:hbp_drugs_pathways_backgroundtotalqty;
+	d2rq:propertyDefinitionLabel "hbp_drugs_pathways backgroundtotalqty";
+	d2rq:column "hbp_drugs_pathways.backgroundtotalqty";
+	d2rq:datatype xsd:integer;
+	.
+
+# Table hbp_drugtarget_ixns
+map:hbp_drugtarget_ixns a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "hbp_drugtarget_ixns/@@hbp_drugtarget_ixns.id@@";
+	d2rq:class vocab:hbp_drugtarget_ixns;
+	d2rq:classDefinitionLabel "hbp_drugtarget_ixns";
+	.
+map:hbp_drugtarget_ixns__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugtarget_ixns;
+	d2rq:property rdfs:label;
+	d2rq:pattern "hbp_drugtarget_ixns #@@hbp_drugtarget_ixns.id@@";
+	.
+map:hbp_drugtarget_ixns_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugtarget_ixns;
+	d2rq:property vocab:hbp_drugtarget_ixns_id;
+	d2rq:propertyDefinitionLabel "hbp_drugtarget_ixns id";
+	d2rq:column "hbp_drugtarget_ixns.id";
+	d2rq:datatype xsd:integer;
+	.
+map:hbp_drugtarget_ixns_drugname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugtarget_ixns;
+	d2rq:property vocab:hbp_drugtarget_ixns_drugname;
+	d2rq:propertyDefinitionLabel "hbp_drugtarget_ixns drugname";
+	d2rq:column "hbp_drugtarget_ixns.drugname";
+	.
+map:hbp_drugtarget_ixns_genesymbol a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugtarget_ixns;
+	d2rq:property vocab:hbp_drugtarget_ixns_genesymbol;
+	d2rq:propertyDefinitionLabel "hbp_drugtarget_ixns genesymbol";
+	d2rq:column "hbp_drugtarget_ixns.genesymbol";
+	.
+map:hbp_drugtarget_ixns_ensembl_proteinid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugtarget_ixns;
+	d2rq:property vocab:hbp_drugtarget_ixns_ensembl_proteinid;
+	d2rq:propertyDefinitionLabel "hbp_drugtarget_ixns ensembl_proteinid";
+	d2rq:column "hbp_drugtarget_ixns.ensembl_proteinid";
+	.
+map:hbp_drugtarget_ixns_ixn_score a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugtarget_ixns;
+	d2rq:property vocab:hbp_drugtarget_ixns_ixn_score;
+	d2rq:propertyDefinitionLabel "hbp_drugtarget_ixns ixn_score";
+	d2rq:column "hbp_drugtarget_ixns.ixn_score";
+	d2rq:datatype xsd:double;
+	.
+map:hbp_drugtarget_ixns_db_reference a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugtarget_ixns;
+	d2rq:property vocab:hbp_drugtarget_ixns_db_reference;
+	d2rq:propertyDefinitionLabel "hbp_drugtarget_ixns db_reference";
+	d2rq:column "hbp_drugtarget_ixns.db_reference";
+	.
+map:hbp_drugtarget_ixns_organism a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugtarget_ixns;
+	d2rq:property vocab:hbp_drugtarget_ixns_organism;
+	d2rq:propertyDefinitionLabel "hbp_drugtarget_ixns organism";
+	d2rq:column "hbp_drugtarget_ixns.organism";
+	.
+map:hbp_drugtarget_ixns_pubmedids a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drugtarget_ixns;
+	d2rq:property vocab:hbp_drugtarget_ixns_pubmedids;
+	d2rq:propertyDefinitionLabel "hbp_drugtarget_ixns pubmedids";
+	d2rq:column "hbp_drugtarget_ixns.pubmedids";
+	.
+
+# Table hbp_targets
+map:hbp_targets a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "hbp_targets/@@hbp_targets.genesymbol|urlify@@";
+	d2rq:class vocab:hbp_targets;
+	d2rq:classDefinitionLabel "hbp_targets";
+	.
+map:hbp_targets__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets;
+	d2rq:property rdfs:label;
+	d2rq:pattern "hbp_targets #@@hbp_targets.genesymbol@@";
+	.
+map:hbp_targets_genesymbol a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets;
+	d2rq:property vocab:hbp_targets_genesymbol;
+	d2rq:propertyDefinitionLabel "hbp_targets genesymbol";
+	d2rq:column "hbp_targets.genesymbol";
+	.
+map:hbp_targets_pdbid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets;
+	d2rq:property vocab:hbp_targets_pdbid;
+	d2rq:propertyDefinitionLabel "hbp_targets pdbid";
+	d2rq:column "hbp_targets.pdbid";
+	.
+map:hbp_targets_allpdbids a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets;
+	d2rq:property vocab:hbp_targets_allpdbids;
+	d2rq:propertyDefinitionLabel "hbp_targets allpdbids";
+	d2rq:column "hbp_targets.allpdbids";
+	.
+map:hbp_targets_hgncid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets;
+	d2rq:property vocab:hbp_targets_hgncid;
+	d2rq:propertyDefinitionLabel "hbp_targets hgncid";
+	d2rq:column "hbp_targets.hgncid";
+	.
+map:hbp_targets_geneid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets;
+	d2rq:property vocab:hbp_targets_geneid;
+	d2rq:propertyDefinitionLabel "hbp_targets geneid";
+	d2rq:column "hbp_targets.geneid";
+	.
+map:hbp_targets_ensembl_protid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets;
+	d2rq:property vocab:hbp_targets_ensembl_protid;
+	d2rq:propertyDefinitionLabel "hbp_targets ensembl_protid";
+	d2rq:column "hbp_targets.ensembl_protid";
+	.
+map:hbp_targets_uniprotac a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets;
+	d2rq:property vocab:hbp_targets_uniprotac;
+	d2rq:propertyDefinitionLabel "hbp_targets uniprotac";
+	d2rq:column "hbp_targets.uniprotac";
+	.
+map:hbp_targets_ctd_ttd_target_types a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets;
+	d2rq:property vocab:hbp_targets_ctd_ttd_target_types;
+	d2rq:propertyDefinitionLabel "hbp_targets ctd_ttd_target_types";
+	d2rq:column "hbp_targets.ctd_ttd_target_types";
+	.
+map:hbp_targets_ctd_ttd_target_diseases a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets;
+	d2rq:property vocab:hbp_targets_ctd_ttd_target_diseases;
+	d2rq:propertyDefinitionLabel "hbp_targets ctd_ttd_target_diseases";
+	d2rq:column "hbp_targets.ctd_ttd_target_diseases";
+	.
+map:hbp_targets_diseasecategories a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets;
+	d2rq:property vocab:hbp_targets_diseasecategories;
+	d2rq:propertyDefinitionLabel "hbp_targets diseasecategories";
+	d2rq:column "hbp_targets.diseasecategories";
+	.
+map:hbp_targets_directevidence a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets;
+	d2rq:property vocab:hbp_targets_directevidence;
+	d2rq:propertyDefinitionLabel "hbp_targets directevidence";
+	d2rq:column "hbp_targets.directevidence";
+	.
+map:hbp_targets_pubmedids a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets;
+	d2rq:property vocab:hbp_targets_pubmedids;
+	d2rq:propertyDefinitionLabel "hbp_targets pubmedids";
+	d2rq:column "hbp_targets.pubmedids";
+	.
+
+# Table hbp_targets_pathways
+map:hbp_targets_pathways a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "hbp_targets_pathways/@@hbp_targets_pathways.id@@";
+	d2rq:class vocab:hbp_targets_pathways;
+	d2rq:classDefinitionLabel "hbp_targets_pathways";
+	.
+map:hbp_targets_pathways__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets_pathways;
+	d2rq:property rdfs:label;
+	d2rq:pattern "hbp_targets_pathways #@@hbp_targets_pathways.id@@";
+	.
+map:hbp_targets_pathways_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets_pathways;
+	d2rq:property vocab:hbp_targets_pathways_id;
+	d2rq:propertyDefinitionLabel "hbp_targets_pathways id";
+	d2rq:column "hbp_targets_pathways.id";
+	d2rq:datatype xsd:integer;
+	.
+map:hbp_targets_pathways_genesymbol a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets_pathways;
+	d2rq:property vocab:hbp_targets_pathways_genesymbol;
+	d2rq:propertyDefinitionLabel "hbp_targets_pathways genesymbol";
+	d2rq:column "hbp_targets_pathways.genesymbol";
+	.
+map:hbp_targets_pathways_geneid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets_pathways;
+	d2rq:property vocab:hbp_targets_pathways_geneid;
+	d2rq:propertyDefinitionLabel "hbp_targets_pathways geneid";
+	d2rq:column "hbp_targets_pathways.geneid";
+	.
+map:hbp_targets_pathways_pathwayname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets_pathways;
+	d2rq:property vocab:hbp_targets_pathways_pathwayname;
+	d2rq:propertyDefinitionLabel "hbp_targets_pathways pathwayname";
+	d2rq:column "hbp_targets_pathways.pathwayname";
+	.
+map:hbp_targets_pathways_pathwayid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_targets_pathways;
+	d2rq:property vocab:hbp_targets_pathways_pathwayid;
+	d2rq:propertyDefinitionLabel "hbp_targets_pathways pathwayid";
+	d2rq:column "hbp_targets_pathways.pathwayid";
+	.
+
+# Table mental_disorders_drugs
+map:mental_disorders_drugs a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "mental_disorders_drugs/@@mental_disorders_drugs.drugname|urlify@@";
+	d2rq:class vocab:mental_disorders_drugs;
+	d2rq:classDefinitionLabel "mental_disorders_drugs";
+	.
+map:mental_disorders_drugs__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_drugs;
+	d2rq:property rdfs:label;
+	d2rq:pattern "mental_disorders_drugs #@@mental_disorders_drugs.drugname@@";
+	.
+map:mental_disorders_drugs_drugname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_drugs;
+	d2rq:property vocab:mental_disorders_drugs_drugname;
+	d2rq:propertyDefinitionLabel "mental_disorders_drugs drugname";
+	d2rq:column "mental_disorders_drugs.drugname";
+	.
+map:mental_disorders_drugs_drugid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_drugs;
+	d2rq:property vocab:mental_disorders_drugs_drugid;
+	d2rq:propertyDefinitionLabel "mental_disorders_drugs drugid";
+	d2rq:column "mental_disorders_drugs.drugid";
+	.
+map:mental_disorders_drugs_stitch_cid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_drugs;
+	d2rq:property vocab:mental_disorders_drugs_stitch_cid;
+	d2rq:propertyDefinitionLabel "mental_disorders_drugs stitch_cid";
+	d2rq:column "mental_disorders_drugs.stitch_cid";
+	.
+map:mental_disorders_drugs_drugstatus a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_drugs;
+	d2rq:property vocab:mental_disorders_drugs_drugstatus;
+	d2rq:propertyDefinitionLabel "mental_disorders_drugs drugstatus";
+	d2rq:column "mental_disorders_drugs.drugstatus";
+	.
+map:mental_disorders_drugs_casrn a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_drugs;
+	d2rq:property vocab:mental_disorders_drugs_casrn;
+	d2rq:propertyDefinitionLabel "mental_disorders_drugs casrn";
+	d2rq:column "mental_disorders_drugs.casrn";
+	.
+map:mental_disorders_drugs_diseases a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_drugs;
+	d2rq:property vocab:mental_disorders_drugs_diseases;
+	d2rq:propertyDefinitionLabel "mental_disorders_drugs diseases";
+	d2rq:column "mental_disorders_drugs.diseases";
+	.
+map:mental_disorders_drugs_diseasecategories a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_drugs;
+	d2rq:property vocab:mental_disorders_drugs_diseasecategories;
+	d2rq:propertyDefinitionLabel "mental_disorders_drugs diseasecategories";
+	d2rq:column "mental_disorders_drugs.diseasecategories";
+	.
+map:mental_disorders_drugs_pubmedids a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_drugs;
+	d2rq:property vocab:mental_disorders_drugs_pubmedids;
+	d2rq:propertyDefinitionLabel "mental_disorders_drugs pubmedids";
+	d2rq:column "mental_disorders_drugs.pubmedids";
+	.
+map:mental_disorders_drugs_directevidence a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_drugs;
+	d2rq:property vocab:mental_disorders_drugs_directevidence;
+	d2rq:propertyDefinitionLabel "mental_disorders_drugs directevidence";
+	d2rq:column "mental_disorders_drugs.directevidence";
+	.
+
+# Table mental_disorders_drugs_similarities
+map:mental_disorders_drugs_similarities a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "mental_disorders_drugs_similarities/@@mental_disorders_drugs_similarities.id@@";
+	d2rq:class vocab:mental_disorders_drugs_similarities;
+	d2rq:classDefinitionLabel "mental_disorders_drugs_similarities";
+	.
+map:mental_disorders_drugs_similarities__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_drugs_similarities;
+	d2rq:property rdfs:label;
+	d2rq:pattern "mental_disorders_drugs_similarities #@@mental_disorders_drugs_similarities.id@@";
+	.
+map:mental_disorders_drugs_similarities_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_drugs_similarities;
+	d2rq:property vocab:mental_disorders_drugs_similarities_id;
+	d2rq:propertyDefinitionLabel "mental_disorders_drugs_similarities id";
+	d2rq:column "mental_disorders_drugs_similarities.id";
+	d2rq:datatype xsd:integer;
+	.
+map:mental_disorders_drugs_similarities_drugname1 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_drugs_similarities;
+	d2rq:property vocab:mental_disorders_drugs_similarities_drugname1;
+	d2rq:propertyDefinitionLabel "mental_disorders_drugs_similarities drugname1";
+	d2rq:column "mental_disorders_drugs_similarities.drugname1";
+	.
+map:mental_disorders_drugs_similarities_drugname2 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_drugs_similarities;
+	d2rq:property vocab:mental_disorders_drugs_similarities_drugname2;
+	d2rq:propertyDefinitionLabel "mental_disorders_drugs_similarities drugname2";
+	d2rq:column "mental_disorders_drugs_similarities.drugname2";
+	.
+map:mental_disorders_drugs_similarities_ecfp4_similarity a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_drugs_similarities;
+	d2rq:property vocab:mental_disorders_drugs_similarities_ecfp4_similarity;
+	d2rq:propertyDefinitionLabel "mental_disorders_drugs_similarities ecfp4_similarity";
+	d2rq:column "mental_disorders_drugs_similarities.ecfp4_similarity";
+	d2rq:datatype xsd:double;
+	.
+
+# Table mental_disorders_dt_ixns
+map:mental_disorders_dt_ixns a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "mental_disorders_dt_ixns/@@mental_disorders_dt_ixns.id@@";
+	d2rq:class vocab:mental_disorders_dt_ixns;
+	d2rq:classDefinitionLabel "mental_disorders_dt_ixns";
+	.
+map:mental_disorders_dt_ixns__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_dt_ixns;
+	d2rq:property rdfs:label;
+	d2rq:pattern "mental_disorders_dt_ixns #@@mental_disorders_dt_ixns.id@@";
+	.
+map:mental_disorders_dt_ixns_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_dt_ixns;
+	d2rq:property vocab:mental_disorders_dt_ixns_id;
+	d2rq:propertyDefinitionLabel "mental_disorders_dt_ixns id";
+	d2rq:column "mental_disorders_dt_ixns.id";
+	d2rq:datatype xsd:integer;
+	.
+map:mental_disorders_dt_ixns_drugname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_dt_ixns;
+	d2rq:property vocab:mental_disorders_dt_ixns_drugname;
+	d2rq:propertyDefinitionLabel "mental_disorders_dt_ixns drugname";
+	d2rq:column "mental_disorders_dt_ixns.drugname";
+	.
+map:mental_disorders_dt_ixns_drugid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_dt_ixns;
+	d2rq:property vocab:mental_disorders_dt_ixns_drugid;
+	d2rq:propertyDefinitionLabel "mental_disorders_dt_ixns drugid";
+	d2rq:column "mental_disorders_dt_ixns.drugid";
+	.
+map:mental_disorders_dt_ixns_stitch_cid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_dt_ixns;
+	d2rq:property vocab:mental_disorders_dt_ixns_stitch_cid;
+	d2rq:propertyDefinitionLabel "mental_disorders_dt_ixns stitch_cid";
+	d2rq:column "mental_disorders_dt_ixns.stitch_cid";
+	.
+map:mental_disorders_dt_ixns_drugstatus a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_dt_ixns;
+	d2rq:property vocab:mental_disorders_dt_ixns_drugstatus;
+	d2rq:propertyDefinitionLabel "mental_disorders_dt_ixns drugstatus";
+	d2rq:column "mental_disorders_dt_ixns.drugstatus";
+	.
+map:mental_disorders_dt_ixns_diseases a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_dt_ixns;
+	d2rq:property vocab:mental_disorders_dt_ixns_diseases;
+	d2rq:propertyDefinitionLabel "mental_disorders_dt_ixns diseases";
+	d2rq:column "mental_disorders_dt_ixns.diseases";
+	.
+map:mental_disorders_dt_ixns_diseasecategories a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_dt_ixns;
+	d2rq:property vocab:mental_disorders_dt_ixns_diseasecategories;
+	d2rq:propertyDefinitionLabel "mental_disorders_dt_ixns diseasecategories";
+	d2rq:column "mental_disorders_dt_ixns.diseasecategories";
+	.
+map:mental_disorders_dt_ixns_directevidence a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_dt_ixns;
+	d2rq:property vocab:mental_disorders_dt_ixns_directevidence;
+	d2rq:propertyDefinitionLabel "mental_disorders_dt_ixns directevidence";
+	d2rq:column "mental_disorders_dt_ixns.directevidence";
+	.
+map:mental_disorders_dt_ixns_genesymbol a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_dt_ixns;
+	d2rq:property vocab:mental_disorders_dt_ixns_genesymbol;
+	d2rq:propertyDefinitionLabel "mental_disorders_dt_ixns genesymbol";
+	d2rq:column "mental_disorders_dt_ixns.genesymbol";
+	.
+map:mental_disorders_dt_ixns_ensembl_proteinid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_dt_ixns;
+	d2rq:property vocab:mental_disorders_dt_ixns_ensembl_proteinid;
+	d2rq:propertyDefinitionLabel "mental_disorders_dt_ixns ensembl_proteinid";
+	d2rq:column "mental_disorders_dt_ixns.ensembl_proteinid";
+	.
+map:mental_disorders_dt_ixns_ixn_score a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_dt_ixns;
+	d2rq:property vocab:mental_disorders_dt_ixns_ixn_score;
+	d2rq:propertyDefinitionLabel "mental_disorders_dt_ixns ixn_score";
+	d2rq:column "mental_disorders_dt_ixns.ixn_score";
+	d2rq:datatype xsd:double;
+	.
+map:mental_disorders_dt_ixns_db_reference a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_dt_ixns;
+	d2rq:property vocab:mental_disorders_dt_ixns_db_reference;
+	d2rq:propertyDefinitionLabel "mental_disorders_dt_ixns db_reference";
+	d2rq:column "mental_disorders_dt_ixns.db_reference";
+	.
+map:mental_disorders_dt_ixns_organism a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_dt_ixns;
+	d2rq:property vocab:mental_disorders_dt_ixns_organism;
+	d2rq:propertyDefinitionLabel "mental_disorders_dt_ixns organism";
+	d2rq:column "mental_disorders_dt_ixns.organism";
+	.
+map:mental_disorders_dt_ixns_pubmedids a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_dt_ixns;
+	d2rq:property vocab:mental_disorders_dt_ixns_pubmedids;
+	d2rq:propertyDefinitionLabel "mental_disorders_dt_ixns pubmedids";
+	d2rq:column "mental_disorders_dt_ixns.pubmedids";
+	.
+
+# Table mental_disorders_targets
+map:mental_disorders_targets a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "mental_disorders_targets/@@mental_disorders_targets.genesymbol|urlify@@";
+	d2rq:class vocab:mental_disorders_targets;
+	d2rq:classDefinitionLabel "mental_disorders_targets";
+	.
+map:mental_disorders_targets__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_targets;
+	d2rq:property rdfs:label;
+	d2rq:pattern "mental_disorders_targets #@@mental_disorders_targets.genesymbol@@";
+	.
+map:mental_disorders_targets_genesymbol a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_targets;
+	d2rq:property vocab:mental_disorders_targets_genesymbol;
+	d2rq:propertyDefinitionLabel "mental_disorders_targets genesymbol";
+	d2rq:column "mental_disorders_targets.genesymbol";
+	.
+
+# Table mental_disorders_targets_similarities
+map:mental_disorders_targets_similarities a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "mental_disorders_targets_similarities/@@mental_disorders_targets_similarities.id@@";
+	d2rq:class vocab:mental_disorders_targets_similarities;
+	d2rq:classDefinitionLabel "mental_disorders_targets_similarities";
+	.
+map:mental_disorders_targets_similarities__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_targets_similarities;
+	d2rq:property rdfs:label;
+	d2rq:pattern "mental_disorders_targets_similarities #@@mental_disorders_targets_similarities.id@@";
+	.
+map:mental_disorders_targets_similarities_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_targets_similarities;
+	d2rq:property vocab:mental_disorders_targets_similarities_id;
+	d2rq:propertyDefinitionLabel "mental_disorders_targets_similarities id";
+	d2rq:column "mental_disorders_targets_similarities.id";
+	d2rq:datatype xsd:integer;
+	.
+map:mental_disorders_targets_similarities_genesymbol_1 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_targets_similarities;
+	d2rq:property vocab:mental_disorders_targets_similarities_genesymbol_1;
+	d2rq:propertyDefinitionLabel "mental_disorders_targets_similarities genesymbol_1";
+	d2rq:column "mental_disorders_targets_similarities.genesymbol_1";
+	.
+map:mental_disorders_targets_similarities_genesymbol_2 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_targets_similarities;
+	d2rq:property vocab:mental_disorders_targets_similarities_genesymbol_2;
+	d2rq:propertyDefinitionLabel "mental_disorders_targets_similarities genesymbol_2";
+	d2rq:column "mental_disorders_targets_similarities.genesymbol_2";
+	.
+map:mental_disorders_targets_similarities_smap_score a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_targets_similarities;
+	d2rq:property vocab:mental_disorders_targets_similarities_smap_score;
+	d2rq:propertyDefinitionLabel "mental_disorders_targets_similarities smap_score";
+	d2rq:column "mental_disorders_targets_similarities.smap_score";
+	d2rq:datatype xsd:double;
+	.
+map:mental_disorders_targets_similarities_pdb1 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_targets_similarities;
+	d2rq:property vocab:mental_disorders_targets_similarities_pdb1;
+	d2rq:propertyDefinitionLabel "mental_disorders_targets_similarities pdb1";
+	d2rq:column "mental_disorders_targets_similarities.pdb1";
+	.
+map:mental_disorders_targets_similarities_pdb2 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:mental_disorders_targets_similarities;
+	d2rq:property vocab:mental_disorders_targets_similarities_pdb2;
+	d2rq:propertyDefinitionLabel "mental_disorders_targets_similarities pdb2";
+	d2rq:column "mental_disorders_targets_similarities.pdb2";
+	.
+
+# Table ndd_drug2drug_similarity
+map:ndd_drug2drug_similarity a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "ndd_drug2drug_similarity/@@ndd_drug2drug_similarity.id@@";
+	d2rq:class vocab:ndd_drug2drug_similarity;
+	d2rq:classDefinitionLabel "ndd_drug2drug_similarity";
+	.
+map:ndd_drug2drug_similarity__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drug2drug_similarity;
+	d2rq:property rdfs:label;
+	d2rq:pattern "ndd_drug2drug_similarity #@@ndd_drug2drug_similarity.id@@";
+	.
+map:ndd_drug2drug_similarity_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drug2drug_similarity;
+	d2rq:property vocab:ndd_drug2drug_similarity_id;
+	d2rq:propertyDefinitionLabel "ndd_drug2drug_similarity id";
+	d2rq:column "ndd_drug2drug_similarity.id";
+	d2rq:datatype xsd:integer;
+	.
+map:ndd_drug2drug_similarity_drugname1 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drug2drug_similarity;
+	d2rq:property vocab:ndd_drug2drug_similarity_drugname1;
+	d2rq:propertyDefinitionLabel "ndd_drug2drug_similarity drugname1";
+	d2rq:column "ndd_drug2drug_similarity.drugname1";
+	.
+map:ndd_drug2drug_similarity_drugname2 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drug2drug_similarity;
+	d2rq:property vocab:ndd_drug2drug_similarity_drugname2;
+	d2rq:propertyDefinitionLabel "ndd_drug2drug_similarity drugname2";
+	d2rq:column "ndd_drug2drug_similarity.drugname2";
+	.
+map:ndd_drug2drug_similarity_tanisim a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drug2drug_similarity;
+	d2rq:property vocab:ndd_drug2drug_similarity_tanisim;
+	d2rq:propertyDefinitionLabel "ndd_drug2drug_similarity tanisim";
+	d2rq:column "ndd_drug2drug_similarity.tanisim";
+	d2rq:datatype xsd:double;
+	.
+
+# Table ndd_drugs_activities4m_bdb
+map:ndd_drugs_activities4m_bdb a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	# Sorry, I don't know which columns to put into the uriPattern
+	#     for "ndd_drugs_activities4m_bdb" because the table doesn't have a primary key.
+	#     Please specify it manually.
+	d2rq:uriPattern "ndd_drugs_activities4m_bdb";
+	d2rq:class vocab:ndd_drugs_activities4m_bdb;
+	d2rq:classDefinitionLabel "ndd_drugs_activities4m_bdb";
+	.
+map:ndd_drugs_activities4m_bdb_drugname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drugs_activities4m_bdb;
+	d2rq:property vocab:ndd_drugs_activities4m_bdb_drugname;
+	d2rq:propertyDefinitionLabel "ndd_drugs_activities4m_bdb drugname";
+	d2rq:column "ndd_drugs_activities4m_bdb.drugname";
+	.
+map:ndd_drugs_activities4m_bdb_bdbid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drugs_activities4m_bdb;
+	d2rq:property vocab:ndd_drugs_activities4m_bdb_bdbid;
+	d2rq:propertyDefinitionLabel "ndd_drugs_activities4m_bdb bdbid";
+	d2rq:column "ndd_drugs_activities4m_bdb.bdbid";
+	.
+map:ndd_drugs_activities4m_bdb_target_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drugs_activities4m_bdb;
+	d2rq:property vocab:ndd_drugs_activities4m_bdb_target_name;
+	d2rq:propertyDefinitionLabel "ndd_drugs_activities4m_bdb target_name";
+	d2rq:column "ndd_drugs_activities4m_bdb.target_name";
+	.
+map:ndd_drugs_activities4m_bdb_uniprotid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drugs_activities4m_bdb;
+	d2rq:property vocab:ndd_drugs_activities4m_bdb_uniprotid;
+	d2rq:propertyDefinitionLabel "ndd_drugs_activities4m_bdb uniprotid";
+	d2rq:column "ndd_drugs_activities4m_bdb.uniprotid";
+	.
+map:ndd_drugs_activities4m_bdb_genesymbol a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drugs_activities4m_bdb;
+	d2rq:property vocab:ndd_drugs_activities4m_bdb_genesymbol;
+	d2rq:propertyDefinitionLabel "ndd_drugs_activities4m_bdb genesymbol";
+	d2rq:column "ndd_drugs_activities4m_bdb.genesymbol";
+	.
+map:ndd_drugs_activities4m_bdb_ki a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drugs_activities4m_bdb;
+	d2rq:property vocab:ndd_drugs_activities4m_bdb_ki;
+	d2rq:propertyDefinitionLabel "ndd_drugs_activities4m_bdb ki";
+	d2rq:column "ndd_drugs_activities4m_bdb.ki";
+	d2rq:datatype xsd:double;
+	.
+
+# Table ndd_drugs_activity4mkidb
+map:ndd_drugs_activity4mkidb a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	# Sorry, I don't know which columns to put into the uriPattern
+	#     for "ndd_drugs_activity4mkidb" because the table doesn't have a primary key.
+	#     Please specify it manually.
+	d2rq:uriPattern "ndd_drugs_activity4mkidb";
+	d2rq:class vocab:ndd_drugs_activity4mkidb;
+	d2rq:classDefinitionLabel "ndd_drugs_activity4mkidb";
+	.
+map:ndd_drugs_activity4mkidb_drugname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drugs_activity4mkidb;
+	d2rq:property vocab:ndd_drugs_activity4mkidb_drugname;
+	d2rq:propertyDefinitionLabel "ndd_drugs_activity4mkidb drugname";
+	d2rq:column "ndd_drugs_activity4mkidb.drugname";
+	.
+map:ndd_drugs_activity4mkidb_gene_code a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drugs_activity4mkidb;
+	d2rq:property vocab:ndd_drugs_activity4mkidb_gene_code;
+	d2rq:propertyDefinitionLabel "ndd_drugs_activity4mkidb gene_code";
+	d2rq:column "ndd_drugs_activity4mkidb.gene_code";
+	.
+map:ndd_drugs_activity4mkidb_gene_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drugs_activity4mkidb;
+	d2rq:property vocab:ndd_drugs_activity4mkidb_gene_name;
+	d2rq:propertyDefinitionLabel "ndd_drugs_activity4mkidb gene_name";
+	d2rq:column "ndd_drugs_activity4mkidb.gene_name";
+	.
+map:ndd_drugs_activity4mkidb_ki a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drugs_activity4mkidb;
+	d2rq:property vocab:ndd_drugs_activity4mkidb_ki;
+	d2rq:propertyDefinitionLabel "ndd_drugs_activity4mkidb ki";
+	d2rq:column "ndd_drugs_activity4mkidb.ki";
+	d2rq:datatype xsd:double;
+	.
+
+# Table ndd_drugs_ki4m_chembl
+map:ndd_drugs_ki4m_chembl a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	# Sorry, I don't know which columns to put into the uriPattern
+	#     for "ndd_drugs_ki4m_chembl" because the table doesn't have a primary key.
+	#     Please specify it manually.
+	d2rq:uriPattern "ndd_drugs_ki4m_chembl";
+	d2rq:class vocab:ndd_drugs_ki4m_chembl;
+	d2rq:classDefinitionLabel "ndd_drugs_ki4m_chembl";
+	.
+map:ndd_drugs_ki4m_chembl_chemblid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drugs_ki4m_chembl;
+	d2rq:property vocab:ndd_drugs_ki4m_chembl_chemblid;
+	d2rq:propertyDefinitionLabel "ndd_drugs_ki4m_chembl chemblid";
+	d2rq:column "ndd_drugs_ki4m_chembl.chemblid";
+	.
+map:ndd_drugs_ki4m_chembl_drugname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drugs_ki4m_chembl;
+	d2rq:property vocab:ndd_drugs_ki4m_chembl_drugname;
+	d2rq:propertyDefinitionLabel "ndd_drugs_ki4m_chembl drugname";
+	d2rq:column "ndd_drugs_ki4m_chembl.drugname";
+	.
+map:ndd_drugs_ki4m_chembl_targetid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drugs_ki4m_chembl;
+	d2rq:property vocab:ndd_drugs_ki4m_chembl_targetid;
+	d2rq:propertyDefinitionLabel "ndd_drugs_ki4m_chembl targetid";
+	d2rq:column "ndd_drugs_ki4m_chembl.targetid";
+	.
+map:ndd_drugs_ki4m_chembl_genesymbol a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drugs_ki4m_chembl;
+	d2rq:property vocab:ndd_drugs_ki4m_chembl_genesymbol;
+	d2rq:propertyDefinitionLabel "ndd_drugs_ki4m_chembl genesymbol";
+	d2rq:column "ndd_drugs_ki4m_chembl.genesymbol";
+	.
+map:ndd_drugs_ki4m_chembl_value a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_drugs_ki4m_chembl;
+	d2rq:property vocab:ndd_drugs_ki4m_chembl_value;
+	d2rq:propertyDefinitionLabel "ndd_drugs_ki4m_chembl value";
+	d2rq:column "ndd_drugs_ki4m_chembl.value";
+	d2rq:datatype xsd:double;
+	.
+
+# Table ndd_t2t_smap_similarities
+map:ndd_t2t_smap_similarities a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "ndd_t2t_smap_similarities/@@ndd_t2t_smap_similarities.id@@";
+	d2rq:class vocab:ndd_t2t_smap_similarities;
+	d2rq:classDefinitionLabel "ndd_t2t_smap_similarities";
+	.
+map:ndd_t2t_smap_similarities__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_t2t_smap_similarities;
+	d2rq:property rdfs:label;
+	d2rq:pattern "ndd_t2t_smap_similarities #@@ndd_t2t_smap_similarities.id@@";
+	.
+map:ndd_t2t_smap_similarities_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_t2t_smap_similarities;
+	d2rq:property vocab:ndd_t2t_smap_similarities_id;
+	d2rq:propertyDefinitionLabel "ndd_t2t_smap_similarities id";
+	d2rq:column "ndd_t2t_smap_similarities.id";
+	d2rq:datatype xsd:integer;
+	.
+map:ndd_t2t_smap_similarities_pdb1 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_t2t_smap_similarities;
+	d2rq:property vocab:ndd_t2t_smap_similarities_pdb1;
+	d2rq:propertyDefinitionLabel "ndd_t2t_smap_similarities pdb1";
+	d2rq:column "ndd_t2t_smap_similarities.pdb1";
+	.
+map:ndd_t2t_smap_similarities_pdb2 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_t2t_smap_similarities;
+	d2rq:property vocab:ndd_t2t_smap_similarities_pdb2;
+	d2rq:propertyDefinitionLabel "ndd_t2t_smap_similarities pdb2";
+	d2rq:column "ndd_t2t_smap_similarities.pdb2";
+	.
+map:ndd_t2t_smap_similarities_genesymbol_1 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_t2t_smap_similarities;
+	d2rq:property vocab:ndd_t2t_smap_similarities_genesymbol_1;
+	d2rq:propertyDefinitionLabel "ndd_t2t_smap_similarities genesymbol_1";
+	d2rq:column "ndd_t2t_smap_similarities.genesymbol_1";
+	.
+map:ndd_t2t_smap_similarities_genesymbol_2 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_t2t_smap_similarities;
+	d2rq:property vocab:ndd_t2t_smap_similarities_genesymbol_2;
+	d2rq:propertyDefinitionLabel "ndd_t2t_smap_similarities genesymbol_2";
+	d2rq:column "ndd_t2t_smap_similarities.genesymbol_2";
+	.
+map:ndd_t2t_smap_similarities_smap_score a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_t2t_smap_similarities;
+	d2rq:property vocab:ndd_t2t_smap_similarities_smap_score;
+	d2rq:propertyDefinitionLabel "ndd_t2t_smap_similarities smap_score";
+	d2rq:column "ndd_t2t_smap_similarities.smap_score";
+	d2rq:datatype xsd:double;
+	.
+
+# Table ndd_targets_pathways
+map:ndd_targets_pathways a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "ndd_targets_pathways/@@ndd_targets_pathways.id@@";
+	d2rq:class vocab:ndd_targets_pathways;
+	d2rq:classDefinitionLabel "ndd_targets_pathways";
+	.
+map:ndd_targets_pathways__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_targets_pathways;
+	d2rq:property rdfs:label;
+	d2rq:pattern "ndd_targets_pathways #@@ndd_targets_pathways.id@@";
+	.
+map:ndd_targets_pathways_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_targets_pathways;
+	d2rq:property vocab:ndd_targets_pathways_id;
+	d2rq:propertyDefinitionLabel "ndd_targets_pathways id";
+	d2rq:column "ndd_targets_pathways.id";
+	d2rq:datatype xsd:integer;
+	.
+map:ndd_targets_pathways_pathwayid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_targets_pathways;
+	d2rq:property vocab:ndd_targets_pathways_pathwayid;
+	d2rq:propertyDefinitionLabel "ndd_targets_pathways pathwayid";
+	d2rq:column "ndd_targets_pathways.pathwayid";
+	.
+map:ndd_targets_pathways_pathway_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_targets_pathways;
+	d2rq:property vocab:ndd_targets_pathways_pathway_name;
+	d2rq:propertyDefinitionLabel "ndd_targets_pathways pathway_name";
+	d2rq:column "ndd_targets_pathways.pathway_name";
+	.
+map:ndd_targets_pathways_kegg_entity_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_targets_pathways;
+	d2rq:property vocab:ndd_targets_pathways_kegg_entity_id;
+	d2rq:propertyDefinitionLabel "ndd_targets_pathways kegg_entity_id";
+	d2rq:column "ndd_targets_pathways.kegg_entity_id";
+	.
+map:ndd_targets_pathways_genesymbol a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ndd_targets_pathways;
+	d2rq:property vocab:ndd_targets_pathways_genesymbol;
+	d2rq:propertyDefinitionLabel "ndd_targets_pathways genesymbol";
+	d2rq:column "ndd_targets_pathways.genesymbol";
+	.
+
+# Table npc2stich_maping
+map:npc2stich_maping a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "npc2stich_maping/@@npc2stich_maping.npc_id|urlify@@/@@npc2stich_maping.stitch_cid|urlify@@";
+	d2rq:class vocab:npc2stich_maping;
+	d2rq:classDefinitionLabel "npc2stich_maping";
+	.
+map:npc2stich_maping__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc2stich_maping;
+	d2rq:property rdfs:label;
+	d2rq:pattern "npc2stich_maping #@@npc2stich_maping.npc_id@@/@@npc2stich_maping.stitch_cid@@";
+	.
+map:npc2stich_maping_npc_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc2stich_maping;
+	d2rq:property vocab:npc2stich_maping_npc_id;
+	d2rq:propertyDefinitionLabel "npc2stich_maping npc_id";
+	d2rq:column "npc2stich_maping.npc_id";
+	.
+map:npc2stich_maping_stitch_cid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc2stich_maping;
+	d2rq:property vocab:npc2stich_maping_stitch_cid;
+	d2rq:propertyDefinitionLabel "npc2stich_maping stitch_cid";
+	d2rq:column "npc2stich_maping.stitch_cid";
+	.
+
+# Table npc_all_human_appdrugs
+map:npc_all_human_appdrugs a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "npc_all_human_appdrugs/@@npc_all_human_appdrugs.npc_id|urlify@@";
+	d2rq:class vocab:npc_all_human_appdrugs;
+	d2rq:classDefinitionLabel "npc_all_human_appdrugs";
+	.
+map:npc_all_human_appdrugs__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc_all_human_appdrugs;
+	d2rq:property rdfs:label;
+	d2rq:pattern "npc_all_human_appdrugs #@@npc_all_human_appdrugs.npc_id@@";
+	.
+map:npc_all_human_appdrugs_npc_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc_all_human_appdrugs;
+	d2rq:property vocab:npc_all_human_appdrugs_npc_id;
+	d2rq:propertyDefinitionLabel "npc_all_human_appdrugs npc_id";
+	d2rq:column "npc_all_human_appdrugs.npc_id";
+	.
+map:npc_all_human_appdrugs_drugname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc_all_human_appdrugs;
+	d2rq:property vocab:npc_all_human_appdrugs_drugname;
+	d2rq:propertyDefinitionLabel "npc_all_human_appdrugs drugname";
+	d2rq:column "npc_all_human_appdrugs.drugname";
+	.
+map:npc_all_human_appdrugs_casno a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc_all_human_appdrugs;
+	d2rq:property vocab:npc_all_human_appdrugs_casno;
+	d2rq:propertyDefinitionLabel "npc_all_human_appdrugs casno";
+	d2rq:column "npc_all_human_appdrugs.casno";
+	.
+map:npc_all_human_appdrugs_pubchem_cid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc_all_human_appdrugs;
+	d2rq:property vocab:npc_all_human_appdrugs_pubchem_cid;
+	d2rq:propertyDefinitionLabel "npc_all_human_appdrugs pubchem_cid";
+	d2rq:column "npc_all_human_appdrugs.pubchem_cid";
+	.
+map:npc_all_human_appdrugs_stitch_cid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc_all_human_appdrugs;
+	d2rq:property vocab:npc_all_human_appdrugs_stitch_cid;
+	d2rq:propertyDefinitionLabel "npc_all_human_appdrugs stitch_cid";
+	d2rq:column "npc_all_human_appdrugs.stitch_cid";
+	.
+map:npc_all_human_appdrugs_haveStr a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc_all_human_appdrugs;
+	d2rq:property vocab:npc_all_human_appdrugs_haveStr;
+	d2rq:propertyDefinitionLabel "npc_all_human_appdrugs haveStr";
+	d2rq:column "npc_all_human_appdrugs.haveStr";
+	d2rq:datatype xsd:integer;
+	.
+
+# Table npc_all_human_appdrugs_similarities
+map:npc_all_human_appdrugs_similarities a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "npc_all_human_appdrugs_similarities/@@npc_all_human_appdrugs_similarities.id@@";
+	d2rq:class vocab:npc_all_human_appdrugs_similarities;
+	d2rq:classDefinitionLabel "npc_all_human_appdrugs_similarities";
+	.
+map:npc_all_human_appdrugs_similarities__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc_all_human_appdrugs_similarities;
+	d2rq:property rdfs:label;
+	d2rq:pattern "npc_all_human_appdrugs_similarities #@@npc_all_human_appdrugs_similarities.id@@";
+	.
+map:npc_all_human_appdrugs_similarities_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc_all_human_appdrugs_similarities;
+	d2rq:property vocab:npc_all_human_appdrugs_similarities_id;
+	d2rq:propertyDefinitionLabel "npc_all_human_appdrugs_similarities id";
+	d2rq:column "npc_all_human_appdrugs_similarities.id";
+	d2rq:datatype xsd:integer;
+	.
+map:npc_all_human_appdrugs_similarities_drugname1 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc_all_human_appdrugs_similarities;
+	d2rq:property vocab:npc_all_human_appdrugs_similarities_drugname1;
+	d2rq:propertyDefinitionLabel "npc_all_human_appdrugs_similarities drugname1";
+	d2rq:column "npc_all_human_appdrugs_similarities.drugname1";
+	.
+map:npc_all_human_appdrugs_similarities_drugname2 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc_all_human_appdrugs_similarities;
+	d2rq:property vocab:npc_all_human_appdrugs_similarities_drugname2;
+	d2rq:propertyDefinitionLabel "npc_all_human_appdrugs_similarities drugname2";
+	d2rq:column "npc_all_human_appdrugs_similarities.drugname2";
+	.
+map:npc_all_human_appdrugs_similarities_maccsfp_similarity a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc_all_human_appdrugs_similarities;
+	d2rq:property vocab:npc_all_human_appdrugs_similarities_maccsfp_similarity;
+	d2rq:propertyDefinitionLabel "npc_all_human_appdrugs_similarities maccsfp_similarity";
+	d2rq:column "npc_all_human_appdrugs_similarities.maccsfp_similarity";
+	d2rq:datatype xsd:double;
+	.
+map:npc_all_human_appdrugs_similarities_ecfp4_similarity a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc_all_human_appdrugs_similarities;
+	d2rq:property vocab:npc_all_human_appdrugs_similarities_ecfp4_similarity;
+	d2rq:propertyDefinitionLabel "npc_all_human_appdrugs_similarities ecfp4_similarity";
+	d2rq:column "npc_all_human_appdrugs_similarities.ecfp4_similarity";
+	d2rq:datatype xsd:double;
+	.
+
+# Table npc_alldrugs_v1018_synonyms
+map:npc_alldrugs_v1018_synonyms a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "npc_alldrugs_v1018_synonyms/@@npc_alldrugs_v1018_synonyms.id@@";
+	d2rq:class vocab:npc_alldrugs_v1018_synonyms;
+	d2rq:classDefinitionLabel "npc_alldrugs_v1018_synonyms";
+	.
+map:npc_alldrugs_v1018_synonyms__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc_alldrugs_v1018_synonyms;
+	d2rq:property rdfs:label;
+	d2rq:pattern "npc_alldrugs_v1018_synonyms #@@npc_alldrugs_v1018_synonyms.id@@";
+	.
+map:npc_alldrugs_v1018_synonyms_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc_alldrugs_v1018_synonyms;
+	d2rq:property vocab:npc_alldrugs_v1018_synonyms_id;
+	d2rq:propertyDefinitionLabel "npc_alldrugs_v1018_synonyms id";
+	d2rq:column "npc_alldrugs_v1018_synonyms.id";
+	d2rq:datatype xsd:integer;
+	.
+map:npc_alldrugs_v1018_synonyms_npc_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc_alldrugs_v1018_synonyms;
+	d2rq:property vocab:npc_alldrugs_v1018_synonyms_npc_id;
+	d2rq:propertyDefinitionLabel "npc_alldrugs_v1018_synonyms npc_id";
+	d2rq:column "npc_alldrugs_v1018_synonyms.npc_id";
+	.
+map:npc_alldrugs_v1018_synonyms_synonym a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:npc_alldrugs_v1018_synonyms;
+	d2rq:property vocab:npc_alldrugs_v1018_synonyms_synonym;
+	d2rq:propertyDefinitionLabel "npc_alldrugs_v1018_synonyms synonym";
+	d2rq:column "npc_alldrugs_v1018_synonyms.synonym";
+	.
+
+# Table pathways
+map:pathways a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "pathways/@@pathways.ptsid|urlify@@";
+	d2rq:class vocab:pathways;
+	d2rq:classDefinitionLabel "pathways";
+	.
+map:pathways__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:pathways;
+	d2rq:property rdfs:label;
+	d2rq:pattern "pathways #@@pathways.ptsid@@";
+	.
+map:pathways_ptspromid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:pathways;
+	d2rq:property vocab:pathways_ptspromid;
+	d2rq:propertyDefinitionLabel "pathways ptspromid";
+	d2rq:column "pathways.ptspromid";
+	.
+map:pathways_ptsid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:pathways;
+	d2rq:property vocab:pathways_ptsid;
+	d2rq:propertyDefinitionLabel "pathways ptsid";
+	d2rq:column "pathways.ptsid";
+	.
+map:pathways_label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:pathways;
+	d2rq:property vocab:pathways_label;
+	d2rq:propertyDefinitionLabel "pathways label";
+	d2rq:column "pathways.label";
+	.
+
+# Table phenomic_g2p_link
+map:phenomic_g2p_link a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "phenomic_g2p_link/@@phenomic_g2p_link.id@@";
+	d2rq:class vocab:phenomic_g2p_link;
+	d2rq:classDefinitionLabel "phenomic_g2p_link";
+	.
+map:phenomic_g2p_link__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_g2p_link;
+	d2rq:property rdfs:label;
+	d2rq:pattern "phenomic_g2p_link #@@phenomic_g2p_link.id@@";
+	.
+map:phenomic_g2p_link_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_g2p_link;
+	d2rq:property vocab:phenomic_g2p_link_id;
+	d2rq:propertyDefinitionLabel "phenomic_g2p_link id";
+	d2rq:column "phenomic_g2p_link.id";
+	d2rq:datatype xsd:integer;
+	.
+map:phenomic_g2p_link_entryid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_g2p_link;
+	d2rq:property vocab:phenomic_g2p_link_entryid;
+	d2rq:propertyDefinitionLabel "phenomic_g2p_link entryid";
+	d2rq:column "phenomic_g2p_link.entryid";
+	d2rq:datatype xsd:integer;
+	.
+map:phenomic_g2p_link_genotypeid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_g2p_link;
+	d2rq:property vocab:phenomic_g2p_link_genotypeid;
+	d2rq:propertyDefinitionLabel "phenomic_g2p_link genotypeid";
+	d2rq:column "phenomic_g2p_link.genotypeid";
+	d2rq:datatype xsd:integer;
+	.
+map:phenomic_g2p_link_phenotypeid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_g2p_link;
+	d2rq:property vocab:phenomic_g2p_link_phenotypeid;
+	d2rq:propertyDefinitionLabel "phenomic_g2p_link phenotypeid";
+	d2rq:column "phenomic_g2p_link.phenotypeid";
+	d2rq:datatype xsd:integer;
+	.
+
+# Table phenomic_genotypes
+map:phenomic_genotypes a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "phenomic_genotypes/@@phenomic_genotypes.genotypeid@@";
+	d2rq:class vocab:phenomic_genotypes;
+	d2rq:classDefinitionLabel "phenomic_genotypes";
+	.
+map:phenomic_genotypes__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_genotypes;
+	d2rq:property rdfs:label;
+	d2rq:pattern "phenomic_genotypes #@@phenomic_genotypes.genotypeid@@";
+	.
+map:phenomic_genotypes_genotypeid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_genotypes;
+	d2rq:property vocab:phenomic_genotypes_genotypeid;
+	d2rq:propertyDefinitionLabel "phenomic_genotypes genotypeid";
+	d2rq:column "phenomic_genotypes.genotypeid";
+	d2rq:datatype xsd:integer;
+	.
+map:phenomic_genotypes_organism a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_genotypes;
+	d2rq:property vocab:phenomic_genotypes_organism;
+	d2rq:propertyDefinitionLabel "phenomic_genotypes organism";
+	d2rq:column "phenomic_genotypes.organism";
+	.
+map:phenomic_genotypes_genesymbol a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_genotypes;
+	d2rq:property vocab:phenomic_genotypes_genesymbol;
+	d2rq:propertyDefinitionLabel "phenomic_genotypes genesymbol";
+	d2rq:column "phenomic_genotypes.genesymbol";
+	.
+map:phenomic_genotypes_ncbigeneid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_genotypes;
+	d2rq:property vocab:phenomic_genotypes_ncbigeneid;
+	d2rq:propertyDefinitionLabel "phenomic_genotypes ncbigeneid";
+	d2rq:column "phenomic_genotypes.ncbigeneid";
+	d2rq:datatype xsd:integer;
+	.
+map:phenomic_genotypes_type a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_genotypes;
+	d2rq:property vocab:phenomic_genotypes_type;
+	d2rq:propertyDefinitionLabel "phenomic_genotypes type";
+	d2rq:column "phenomic_genotypes.type";
+	.
+
+# Table phenomic_keywords
+map:phenomic_keywords a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "phenomic_keywords/@@phenomic_keywords.id@@";
+	d2rq:class vocab:phenomic_keywords;
+	d2rq:classDefinitionLabel "phenomic_keywords";
+	.
+map:phenomic_keywords__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_keywords;
+	d2rq:property rdfs:label;
+	d2rq:pattern "phenomic_keywords #@@phenomic_keywords.id@@";
+	.
+map:phenomic_keywords_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_keywords;
+	d2rq:property vocab:phenomic_keywords_id;
+	d2rq:propertyDefinitionLabel "phenomic_keywords id";
+	d2rq:column "phenomic_keywords.id";
+	d2rq:datatype xsd:integer;
+	.
+map:phenomic_keywords_phenotypeid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_keywords;
+	d2rq:property vocab:phenomic_keywords_phenotypeid;
+	d2rq:propertyDefinitionLabel "phenomic_keywords phenotypeid";
+	d2rq:column "phenomic_keywords.phenotypeid";
+	d2rq:datatype xsd:integer;
+	.
+map:phenomic_keywords_keyword a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_keywords;
+	d2rq:property vocab:phenomic_keywords_keyword;
+	d2rq:propertyDefinitionLabel "phenomic_keywords keyword";
+	d2rq:column "phenomic_keywords.keyword";
+	.
+map:phenomic_keywords_definition a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_keywords;
+	d2rq:property vocab:phenomic_keywords_definition;
+	d2rq:propertyDefinitionLabel "phenomic_keywords definition";
+	d2rq:column "phenomic_keywords.definition";
+	.
+map:phenomic_keywords_example a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_keywords;
+	d2rq:property vocab:phenomic_keywords_example;
+	d2rq:propertyDefinitionLabel "phenomic_keywords example";
+	d2rq:column "phenomic_keywords.example";
+	.
+
+# Table phenomic_orthologs
+map:phenomic_orthologs a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "phenomic_orthologs/@@phenomic_orthologs.id@@";
+	d2rq:class vocab:phenomic_orthologs;
+	d2rq:classDefinitionLabel "phenomic_orthologs";
+	.
+map:phenomic_orthologs__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_orthologs;
+	d2rq:property rdfs:label;
+	d2rq:pattern "phenomic_orthologs #@@phenomic_orthologs.id@@";
+	.
+map:phenomic_orthologs_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_orthologs;
+	d2rq:property vocab:phenomic_orthologs_id;
+	d2rq:propertyDefinitionLabel "phenomic_orthologs id";
+	d2rq:column "phenomic_orthologs.id";
+	d2rq:datatype xsd:integer;
+	.
+map:phenomic_orthologs_genotypeid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_orthologs;
+	d2rq:property vocab:phenomic_orthologs_genotypeid;
+	d2rq:propertyDefinitionLabel "phenomic_orthologs genotypeid";
+	d2rq:column "phenomic_orthologs.genotypeid";
+	d2rq:datatype xsd:integer;
+	.
+map:phenomic_orthologs_homologeneid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_orthologs;
+	d2rq:property vocab:phenomic_orthologs_homologeneid;
+	d2rq:propertyDefinitionLabel "phenomic_orthologs homologeneid";
+	d2rq:column "phenomic_orthologs.homologeneid";
+	d2rq:datatype xsd:integer;
+	.
+map:phenomic_orthologs_title a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_orthologs;
+	d2rq:property vocab:phenomic_orthologs_title;
+	d2rq:propertyDefinitionLabel "phenomic_orthologs title";
+	d2rq:column "phenomic_orthologs.title";
+	.
+map:phenomic_orthologs_entrezgeneid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_orthologs;
+	d2rq:property vocab:phenomic_orthologs_entrezgeneid;
+	d2rq:propertyDefinitionLabel "phenomic_orthologs entrezgeneid";
+	d2rq:column "phenomic_orthologs.entrezgeneid";
+	d2rq:datatype xsd:integer;
+	.
+
+# Table phenomic_phenotype_refs
+map:phenomic_phenotype_refs a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "phenomic_phenotype_refs/@@phenomic_phenotype_refs.id@@";
+	d2rq:class vocab:phenomic_phenotype_refs;
+	d2rq:classDefinitionLabel "phenomic_phenotype_refs";
+	.
+map:phenomic_phenotype_refs__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_phenotype_refs;
+	d2rq:property rdfs:label;
+	d2rq:pattern "phenomic_phenotype_refs #@@phenomic_phenotype_refs.id@@";
+	.
+map:phenomic_phenotype_refs_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_phenotype_refs;
+	d2rq:property vocab:phenomic_phenotype_refs_id;
+	d2rq:propertyDefinitionLabel "phenomic_phenotype_refs id";
+	d2rq:column "phenomic_phenotype_refs.id";
+	d2rq:datatype xsd:integer;
+	.
+map:phenomic_phenotype_refs_phenotypeid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_phenotype_refs;
+	d2rq:property vocab:phenomic_phenotype_refs_phenotypeid;
+	d2rq:propertyDefinitionLabel "phenomic_phenotype_refs phenotypeid";
+	d2rq:column "phenomic_phenotype_refs.phenotypeid";
+	d2rq:datatype xsd:integer;
+	.
+map:phenomic_phenotype_refs_xrefid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_phenotype_refs;
+	d2rq:property vocab:phenomic_phenotype_refs_xrefid;
+	d2rq:propertyDefinitionLabel "phenomic_phenotype_refs xrefid";
+	d2rq:column "phenomic_phenotype_refs.xrefid";
+	d2rq:datatype xsd:integer;
+	.
+map:phenomic_phenotype_refs_authors a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_phenotype_refs;
+	d2rq:property vocab:phenomic_phenotype_refs_authors;
+	d2rq:propertyDefinitionLabel "phenomic_phenotype_refs authors";
+	d2rq:column "phenomic_phenotype_refs.authors";
+	.
+map:phenomic_phenotype_refs_title a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_phenotype_refs;
+	d2rq:property vocab:phenomic_phenotype_refs_title;
+	d2rq:propertyDefinitionLabel "phenomic_phenotype_refs title";
+	d2rq:column "phenomic_phenotype_refs.title";
+	.
+map:phenomic_phenotype_refs_year a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_phenotype_refs;
+	d2rq:property vocab:phenomic_phenotype_refs_year;
+	d2rq:propertyDefinitionLabel "phenomic_phenotype_refs year";
+	d2rq:column "phenomic_phenotype_refs.year";
+	.
+
+# Table phenomic_phenotypes
+map:phenomic_phenotypes a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "phenomic_phenotypes/@@phenomic_phenotypes.phenotypeid@@";
+	d2rq:class vocab:phenomic_phenotypes;
+	d2rq:classDefinitionLabel "phenomic_phenotypes";
+	.
+map:phenomic_phenotypes__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_phenotypes;
+	d2rq:property rdfs:label;
+	d2rq:pattern "phenomic_phenotypes #@@phenomic_phenotypes.phenotypeid@@";
+	.
+map:phenomic_phenotypes_phenotypeid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_phenotypes;
+	d2rq:property vocab:phenomic_phenotypes_phenotypeid;
+	d2rq:propertyDefinitionLabel "phenomic_phenotypes phenotypeid";
+	d2rq:column "phenomic_phenotypes.phenotypeid";
+	d2rq:datatype xsd:integer;
+	.
+map:phenomic_phenotypes_organism a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_phenotypes;
+	d2rq:property vocab:phenomic_phenotypes_organism;
+	d2rq:propertyDefinitionLabel "phenomic_phenotypes organism";
+	d2rq:column "phenomic_phenotypes.organism";
+	.
+map:phenomic_phenotypes_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_phenotypes;
+	d2rq:property vocab:phenomic_phenotypes_name;
+	d2rq:propertyDefinitionLabel "phenomic_phenotypes name";
+	d2rq:column "phenomic_phenotypes.name";
+	.
+map:phenomic_phenotypes_symbol a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_phenotypes;
+	d2rq:property vocab:phenomic_phenotypes_symbol;
+	d2rq:propertyDefinitionLabel "phenomic_phenotypes symbol";
+	d2rq:column "phenomic_phenotypes.symbol";
+	.
+map:phenomic_phenotypes_description a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:phenomic_phenotypes;
+	d2rq:property vocab:phenomic_phenotypes_description;
+	d2rq:propertyDefinitionLabel "phenomic_phenotypes description";
+	d2rq:column "phenomic_phenotypes.description";
+	.
+
+# Table pts_extdb
+map:pts_extdb a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "pts_extdb/@@pts_extdb.id@@";
+	d2rq:class vocab:pts_extdb;
+	d2rq:classDefinitionLabel "pts_extdb";
+	.
+map:pts_extdb__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:pts_extdb;
+	d2rq:property rdfs:label;
+	d2rq:pattern "pts_extdb #@@pts_extdb.id@@";
+	.
+map:pts_extdb_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:pts_extdb;
+	d2rq:property vocab:pts_extdb_id;
+	d2rq:propertyDefinitionLabel "pts_extdb id";
+	d2rq:column "pts_extdb.id";
+	d2rq:datatype xsd:integer;
+	.
+map:pts_extdb_ptsid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:pts_extdb;
+	d2rq:property vocab:pts_extdb_ptsid;
+	d2rq:propertyDefinitionLabel "pts_extdb ptsid";
+	d2rq:column "pts_extdb.ptsid";
+	.
+map:pts_extdb_external_database_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:pts_extdb;
+	d2rq:property vocab:pts_extdb_external_database_id;
+	d2rq:propertyDefinitionLabel "pts_extdb external_database_id";
+	d2rq:column "pts_extdb.external_database_id";
+	.
+
+# Table side_effects
+map:side_effects a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "side_effects/@@side_effects.id@@";
+	d2rq:class vocab:side_effects;
+	d2rq:classDefinitionLabel "side_effects";
+	.
+map:side_effects__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:side_effects;
+	d2rq:property rdfs:label;
+	d2rq:pattern "side_effects #@@side_effects.id@@";
+	.
+map:side_effects_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:side_effects;
+	d2rq:property vocab:side_effects_id;
+	d2rq:propertyDefinitionLabel "side_effects id";
+	d2rq:column "side_effects.id";
+	d2rq:datatype xsd:integer;
+	.
+map:side_effects_cid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:side_effects;
+	d2rq:property vocab:side_effects_cid;
+	d2rq:propertyDefinitionLabel "side_effects cid";
+	d2rq:column "side_effects.cid";
+	.
+map:side_effects_drugname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:side_effects;
+	d2rq:property vocab:side_effects_drugname;
+	d2rq:propertyDefinitionLabel "side_effects drugname";
+	d2rq:column "side_effects.drugname";
+	.
+map:side_effects_sideeffect a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:side_effects;
+	d2rq:property vocab:side_effects_sideeffect;
+	d2rq:propertyDefinitionLabel "side_effects sideeffect";
+	d2rq:column "side_effects.sideeffect";
+	.
+
+# Table side_effects_2
+map:side_effects_2 a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "side_effects_2/@@side_effects_2.id@@";
+	d2rq:class vocab:side_effects_2;
+	d2rq:classDefinitionLabel "side_effects_2";
+	.
+map:side_effects_2__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:side_effects_2;
+	d2rq:property rdfs:label;
+	d2rq:pattern "side_effects_2 #@@side_effects_2.id@@";
+	.
+map:side_effects_2_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:side_effects_2;
+	d2rq:property vocab:side_effects_2_id;
+	d2rq:propertyDefinitionLabel "side_effects_2 id";
+	d2rq:column "side_effects_2.id";
+	d2rq:datatype xsd:integer;
+	.
+map:side_effects_2_sid1 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:side_effects_2;
+	d2rq:property vocab:side_effects_2_sid1;
+	d2rq:propertyDefinitionLabel "side_effects_2 sid1";
+	d2rq:column "side_effects_2.sid1";
+	.
+map:side_effects_2_sid2 a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:side_effects_2;
+	d2rq:property vocab:side_effects_2_sid2;
+	d2rq:propertyDefinitionLabel "side_effects_2 sid2";
+	d2rq:column "side_effects_2.sid2";
+	.
+map:side_effects_2_cid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:side_effects_2;
+	d2rq:property vocab:side_effects_2_cid;
+	d2rq:propertyDefinitionLabel "side_effects_2 cid";
+	d2rq:column "side_effects_2.cid";
+	.
+map:side_effects_2_drugname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:side_effects_2;
+	d2rq:property vocab:side_effects_2_drugname;
+	d2rq:propertyDefinitionLabel "side_effects_2 drugname";
+	d2rq:column "side_effects_2.drugname";
+	.
+map:side_effects_2_sideeffect a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:side_effects_2;
+	d2rq:property vocab:side_effects_2_sideeffect;
+	d2rq:propertyDefinitionLabel "side_effects_2 sideeffect";
+	d2rq:column "side_effects_2.sideeffect";
+	.
+
+# Table stitch_chemicals_v31
+map:stitch_chemicals_v31 a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "stitch_chemicals_v31/@@stitch_chemicals_v31.stitch_cid|urlify@@";
+	d2rq:class vocab:stitch_chemicals_v31;
+	d2rq:classDefinitionLabel "stitch_chemicals_v31";
+	.
+map:stitch_chemicals_v31__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:stitch_chemicals_v31;
+	d2rq:property rdfs:label;
+	d2rq:pattern "stitch_chemicals_v31 #@@stitch_chemicals_v31.stitch_cid@@";
+	.
+map:stitch_chemicals_v31_stitch_cid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:stitch_chemicals_v31;
+	d2rq:property vocab:stitch_chemicals_v31_stitch_cid;
+	d2rq:propertyDefinitionLabel "stitch_chemicals_v31 stitch_cid";
+	d2rq:column "stitch_chemicals_v31.stitch_cid";
+	.
+map:stitch_chemicals_v31_chemical_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:stitch_chemicals_v31;
+	d2rq:property vocab:stitch_chemicals_v31_chemical_name;
+	d2rq:propertyDefinitionLabel "stitch_chemicals_v31 chemical_name";
+	d2rq:column "stitch_chemicals_v31.chemical_name";
+	.
+map:stitch_chemicals_v31_smiles a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:stitch_chemicals_v31;
+	d2rq:property vocab:stitch_chemicals_v31_smiles;
+	d2rq:propertyDefinitionLabel "stitch_chemicals_v31 smiles";
+	d2rq:column "stitch_chemicals_v31.smiles";
+	.
+
+# Table stitch_chemicals_v31_synonyms
+map:stitch_chemicals_v31_synonyms a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "stitch_chemicals_v31_synonyms/@@stitch_chemicals_v31_synonyms.id@@";
+	d2rq:class vocab:stitch_chemicals_v31_synonyms;
+	d2rq:classDefinitionLabel "stitch_chemicals_v31_synonyms";
+	.
+map:stitch_chemicals_v31_synonyms__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:stitch_chemicals_v31_synonyms;
+	d2rq:property rdfs:label;
+	d2rq:pattern "stitch_chemicals_v31_synonyms #@@stitch_chemicals_v31_synonyms.id@@";
+	.
+map:stitch_chemicals_v31_synonyms_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:stitch_chemicals_v31_synonyms;
+	d2rq:property vocab:stitch_chemicals_v31_synonyms_id;
+	d2rq:propertyDefinitionLabel "stitch_chemicals_v31_synonyms id";
+	d2rq:column "stitch_chemicals_v31_synonyms.id";
+	d2rq:datatype xsd:integer;
+	.
+map:stitch_chemicals_v31_synonyms_stitch_cid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:stitch_chemicals_v31_synonyms;
+	d2rq:property vocab:stitch_chemicals_v31_synonyms_stitch_cid;
+	d2rq:propertyDefinitionLabel "stitch_chemicals_v31_synonyms stitch_cid";
+	d2rq:column "stitch_chemicals_v31_synonyms.stitch_cid";
+	.
+map:stitch_chemicals_v31_synonyms_synonym a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:stitch_chemicals_v31_synonyms;
+	d2rq:property vocab:stitch_chemicals_v31_synonyms_synonym;
+	d2rq:propertyDefinitionLabel "stitch_chemicals_v31_synonyms synonym";
+	d2rq:column "stitch_chemicals_v31_synonyms.synonym";
+	.
+
+# Table stitch_hum_prot_chem_link_v31
+map:stitch_hum_prot_chem_link_v31 a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "stitch_hum_prot_chem_link_v31/@@stitch_hum_prot_chem_link_v31.id@@";
+	d2rq:class vocab:stitch_hum_prot_chem_link_v31;
+	d2rq:classDefinitionLabel "stitch_hum_prot_chem_link_v31";
+	.
+map:stitch_hum_prot_chem_link_v31__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:stitch_hum_prot_chem_link_v31;
+	d2rq:property rdfs:label;
+	d2rq:pattern "stitch_hum_prot_chem_link_v31 #@@stitch_hum_prot_chem_link_v31.id@@";
+	.
+map:stitch_hum_prot_chem_link_v31_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:stitch_hum_prot_chem_link_v31;
+	d2rq:property vocab:stitch_hum_prot_chem_link_v31_id;
+	d2rq:propertyDefinitionLabel "stitch_hum_prot_chem_link_v31 id";
+	d2rq:column "stitch_hum_prot_chem_link_v31.id";
+	d2rq:datatype xsd:integer;
+	.
+map:stitch_hum_prot_chem_link_v31_stitch_cid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:stitch_hum_prot_chem_link_v31;
+	d2rq:property vocab:stitch_hum_prot_chem_link_v31_stitch_cid;
+	d2rq:propertyDefinitionLabel "stitch_hum_prot_chem_link_v31 stitch_cid";
+	d2rq:column "stitch_hum_prot_chem_link_v31.stitch_cid";
+	.
+map:stitch_hum_prot_chem_link_v31_ensembl_protein a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:stitch_hum_prot_chem_link_v31;
+	d2rq:property vocab:stitch_hum_prot_chem_link_v31_ensembl_protein;
+	d2rq:propertyDefinitionLabel "stitch_hum_prot_chem_link_v31 ensembl_protein";
+	d2rq:column "stitch_hum_prot_chem_link_v31.ensembl_protein";
+	.
+map:stitch_hum_prot_chem_link_v31_stitch_score a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:stitch_hum_prot_chem_link_v31;
+	d2rq:property vocab:stitch_hum_prot_chem_link_v31_stitch_score;
+	d2rq:propertyDefinitionLabel "stitch_hum_prot_chem_link_v31 stitch_score";
+	d2rq:column "stitch_hum_prot_chem_link_v31.stitch_score";
+	d2rq:datatype xsd:integer;
+	.
+
+# Table swissprotids
+map:swissprotids a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "swissprotids/@@swissprotids.id|urlify@@";
+	d2rq:class vocab:swissprotids;
+	d2rq:classDefinitionLabel "swissprotids";
+	.
+map:swissprotids__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:swissprotids;
+	d2rq:property rdfs:label;
+	d2rq:pattern "swissprotids #@@swissprotids.id@@";
+	.
+map:swissprotids_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:swissprotids;
+	d2rq:property vocab:swissprotids_id;
+	d2rq:propertyDefinitionLabel "swissprotids id";
+	d2rq:column "swissprotids.id";
+	.
+
+# Table testtabel
+map:testtabel a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	# Sorry, I don't know which columns to put into the uriPattern
+	#     for "testtabel" because the table doesn't have a primary key.
+	#     Please specify it manually.
+	d2rq:uriPattern "testtabel";
+	d2rq:class vocab:testtabel;
+	d2rq:classDefinitionLabel "testtabel";
+	.
+map:testtabel_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:testtabel;
+	d2rq:property vocab:testtabel_id;
+	d2rq:propertyDefinitionLabel "testtabel id";
+	d2rq:column "testtabel.id";
+	d2rq:datatype xsd:integer;
+	.
+map:testtabel_stitch_cid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:testtabel;
+	d2rq:property vocab:testtabel_stitch_cid;
+	d2rq:propertyDefinitionLabel "testtabel stitch_cid";
+	d2rq:column "testtabel.stitch_cid";
+	.
+map:testtabel_ensembl_protein a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:testtabel;
+	d2rq:property vocab:testtabel_ensembl_protein;
+	d2rq:propertyDefinitionLabel "testtabel ensembl_protein";
+	d2rq:column "testtabel.ensembl_protein";
+	.
+map:testtabel_stitch_score a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:testtabel;
+	d2rq:property vocab:testtabel_stitch_score;
+	d2rq:propertyDefinitionLabel "testtabel stitch_score";
+	d2rq:column "testtabel.stitch_score";
+	d2rq:datatype xsd:integer;
+	.
+
+# Table tmp_gene_pw
+map:tmp_gene_pw a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "tmp_gene_pw/@@tmp_gene_pw.id@@";
+	d2rq:class vocab:tmp_gene_pw;
+	d2rq:classDefinitionLabel "tmp_gene_pw";
+	.
+map:tmp_gene_pw__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:tmp_gene_pw;
+	d2rq:property rdfs:label;
+	d2rq:pattern "tmp_gene_pw #@@tmp_gene_pw.id@@";
+	.
+map:tmp_gene_pw_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:tmp_gene_pw;
+	d2rq:property vocab:tmp_gene_pw_id;
+	d2rq:propertyDefinitionLabel "tmp_gene_pw id";
+	d2rq:column "tmp_gene_pw.id";
+	d2rq:datatype xsd:integer;
+	.
+map:tmp_gene_pw_PMID a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:tmp_gene_pw;
+	d2rq:property vocab:tmp_gene_pw_PMID;
+	d2rq:propertyDefinitionLabel "tmp_gene_pw PMID";
+	d2rq:column "tmp_gene_pw.PMID";
+	.
+map:tmp_gene_pw_Gene_ID a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:tmp_gene_pw;
+	d2rq:property vocab:tmp_gene_pw_Gene_ID;
+	d2rq:propertyDefinitionLabel "tmp_gene_pw Gene_ID";
+	d2rq:column "tmp_gene_pw.Gene_ID";
+	.
+map:tmp_gene_pw_PTS_ID a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:tmp_gene_pw;
+	d2rq:property vocab:tmp_gene_pw_PTS_ID;
+	d2rq:propertyDefinitionLabel "tmp_gene_pw PTS_ID";
+	d2rq:column "tmp_gene_pw.PTS_ID";
+	.
+map:tmp_gene_pw_evidence_sentence a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:tmp_gene_pw;
+	d2rq:property vocab:tmp_gene_pw_evidence_sentence;
+	d2rq:propertyDefinitionLabel "tmp_gene_pw evidence_sentence";
+	d2rq:column "tmp_gene_pw.evidence_sentence";
+	.
+map:tmp_gene_pw_disease a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:tmp_gene_pw;
+	d2rq:property vocab:tmp_gene_pw_disease;
+	d2rq:propertyDefinitionLabel "tmp_gene_pw disease";
+	d2rq:column "tmp_gene_pw.disease";
+	.
+
+# Table all_drugs
+map:all_drugs a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	# Sorry, I don't know which columns to put into the uriPattern
+	#     for "all_drugs" because the table doesn't have a primary key.
+	#     Please specify it manually.
+	d2rq:uriPattern "all_drugs";
+	d2rq:class vocab:all_drugs;
+	d2rq:classDefinitionLabel "all_drugs";
+	.
+map:all_drugs_npc_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:all_drugs;
+	d2rq:property vocab:all_drugs_npc_id;
+	d2rq:propertyDefinitionLabel "all_drugs npc_id";
+	d2rq:column "all_drugs.npc_id";
+	.
+map:all_drugs_drugname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:all_drugs;
+	d2rq:property vocab:all_drugs_drugname;
+	d2rq:propertyDefinitionLabel "all_drugs drugname";
+	d2rq:column "all_drugs.drugname";
+	.
+map:all_drugs_casno a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:all_drugs;
+	d2rq:property vocab:all_drugs_casno;
+	d2rq:propertyDefinitionLabel "all_drugs casno";
+	d2rq:column "all_drugs.casno";
+	.
+map:all_drugs_pubchem_cid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:all_drugs;
+	d2rq:property vocab:all_drugs_pubchem_cid;
+	d2rq:propertyDefinitionLabel "all_drugs pubchem_cid";
+	d2rq:column "all_drugs.pubchem_cid";
+	.
+map:all_drugs_stitch_cid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:all_drugs;
+	d2rq:property vocab:all_drugs_stitch_cid;
+	d2rq:propertyDefinitionLabel "all_drugs stitch_cid";
+	d2rq:column "all_drugs.stitch_cid";
+	.
+map:all_drugs_haveStr a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:all_drugs;
+	d2rq:property vocab:all_drugs_haveStr;
+	d2rq:propertyDefinitionLabel "all_drugs haveStr";
+	d2rq:column "all_drugs.haveStr";
+	d2rq:datatype xsd:integer;
+	.
+
+# Table hbp_drug_SE
+map:hbp_drug_SE a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	# Sorry, I don't know which columns to put into the uriPattern
+	#     for "hbp_drug_SE" because the table doesn't have a primary key.
+	#     Please specify it manually.
+	d2rq:uriPattern "hbp_drug_SE";
+	d2rq:class vocab:hbp_drug_SE;
+	d2rq:classDefinitionLabel "hbp_drug_SE";
+	.
+map:hbp_drug_SE_drugname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drug_SE;
+	d2rq:property vocab:hbp_drug_SE_drugname;
+	d2rq:propertyDefinitionLabel "hbp_drug_SE drugname";
+	d2rq:column "hbp_drug_SE.drugname";
+	.
+map:hbp_drug_SE_sideeffect a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:hbp_drug_SE;
+	d2rq:property vocab:hbp_drug_SE_sideeffect;
+	d2rq:propertyDefinitionLabel "hbp_drug_SE sideeffect";
+	d2rq:column "hbp_drug_SE.sideeffect";
+	.
+

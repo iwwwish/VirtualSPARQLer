@@ -84,7 +84,7 @@
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="databaseName" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="testConnection" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="createConnection" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="createConnection" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -159,9 +159,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="DejaVu Sans Mono" size="12" style="0"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/vsiramshetty/NetBeansProjects/VirtualSPARQLer/images/gears.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Test"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
@@ -175,9 +172,6 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="DejaVu Sans Mono" size="12" style="0"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/vsiramshetty/NetBeansProjects/VirtualSPARQLer/images/plus_plus.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Create"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -200,15 +194,14 @@
               <Font name="DejaVu Sans Mono" size="12" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="select a JDBC Driver&apos;s class"/>
-                <StringItem index="1" value="com.mysql.jdbc.Driver"/>
-                <StringItem index="2" value="org.postgresql.Driver"/>
+              <StringArray count="1">
+                <StringItem index="0" value="com.mysql.jdbc.Driver"/>
               </StringArray>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
             </Property>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
