@@ -19,12 +19,13 @@ Virtual SPARQLer depends upon the D2RQ tool to emulate the RDF-based querying en
 
 1. extract the archive and keep the contents of the archive in the same directory,
 
-    tar -xvzf VirtualSPARQLer.tar.gz
+    `tar -xvzf VirtualSPARQLer.tar.gz`
 
 2. start the program by executing the JAR file in "target" directory, you will see a plain interface unlike the above,
 
-    chmod +x Virtual-Sparqler-1.0-jar-with-dependencies.jar
-    java -jar Virtual-Sparqler-1.0-jar-with-dependencies.jar
+    `chmod +x Virtual-Sparqler-1.0-jar-with-dependencies.jar`
+    
+    `java -jar Virtual-Sparqler-1.0-jar-with-dependencies.jar`
 
 3. load the HBP database by selecting option "Open Mapping" from the user interface and selecting an existing mapping file (mapping.ttl) for HBP database located in folder "d2rq-0.8.1" (see screenshot 1),
 
@@ -32,7 +33,7 @@ Virtual SPARQLer depends upon the D2RQ tool to emulate the RDF-based querying en
 
 5. start querying the HBP database by simple writing simple SPARQL queries,
 
-    e.g. SELECT * { <hbp_drugs/donepezil ?p ?o>}
+    `e.g. SELECT * { <hbp_drugs/donepezil> ?p ?o}`
 
 6. if there is an updated version of the database, choose "New Connection" option instead,
 
@@ -57,14 +58,17 @@ Virtual SPARQLer features the following advantages over the traditional RDF base
 ###### Screenshots:
 
 screenshot 1:
+
 ![alt tag](http://i60.tinypic.com/33kre40.jpg)
 
 screenshot 2:
+
 ![alt tag](http://i62.tinypic.com/33u90cx.jpg)
 
 screenshot 3:
+
 ![alt tag](http://i60.tinypic.com/3097oe8.jpg)
 
 ###### Contact:
 
-For queries, mail me at srmshtty@gmail.com or vishal-babu.siramshetty@charite.de.
+For questions or collaborations, contact me (vishal-babu.siramshetty@charite.de).
