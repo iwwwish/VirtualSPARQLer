@@ -10,8 +10,8 @@ A Java utility for querying a relational database (e.g. MySQL) via a SPARQL endp
 
 ###### System Requirements:
 
-1. Linux (Debian) operating system
-2. Java 1.7 or later (set JAVA_HOME)
+1. Linux/MacOS
+2. Java 7 or later
 
 ###### Usage: (for screenshots, navigate to the bottom)
 
