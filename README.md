@@ -1,21 +1,19 @@
 VirtualSPARQLer
 ===============
 
-###### What is Virtual SPARQLer?
-
-A Java utility for querying a relational database (e.g. MySQL) via a SPARQL endpoint exposed by the virtual RDF graph created for the relational database. The virtual RDF graph is loaded into the graphical user interface with the help of a mapping file which serves as the schema for the graph. A screenshot of the application describing different parts of the interface is presented below.
+A Java utility for querying a relational database (e.g. MySQL db) via a SPARQL endpoint exposed by the virtual RDF graph created for the relational database. The virtual RDF graph is loaded into the GUI with the help of a mapping file which serves as the schema for the graph. A screenshot of the interface with different parts labelled:
 
 ![alt tag](http://i61.tinypic.com/2pzxjbc.jpg)
 
 
 ###### System Requirements:
 
-1. Linux/MacOS
+1. Linux or Mac OS
 2. Java 7 or later
 
-###### Usage: (for screenshots, navigate to the bottom)
+###### Usage: (for screenshots, go to the bottom of this page)
 
-Virtual SPARQLer depends upon the D2RQ tool to emulate the RDF-based querying environment. Therefore, the application is always packed along with D2RQ tool. To start using, download the archive and follow the instructions below.
+Virtual SPARQLer relies upon the D2RQ tool to emulate the RDF-based querying environment. Therefore, the application is packed along with the D2RQ tool. To start using, download the archive and follow the instructions below.
 
 1. extract the archive and keep the contents of the archive in the same directory,
 
@@ -71,4 +69,4 @@ screenshot 3:
 
 ###### Contact:
 
-For questions or collaborations, contact me (vishal-babu.siramshetty@charite.de).
+For questions or collaborations, contact me (srmshhtty@gmail.com).
